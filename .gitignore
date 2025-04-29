@@ -1,10 +1,14 @@
 # Node modules
-node_modules/
+/dist
+/node_modules
+/build
 
 # Build output
-dist/
+
 
 # Log files
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
