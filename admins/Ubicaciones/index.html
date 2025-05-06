@@ -3,78 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gestión de Clientes</title>
+  <title>Grabaciones</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="index.js"></script>
 </head>
-<body>
+<body class="bg-light">
 
   <div class="d-flex">
     <!-- Sidebar -->
-    <div class="sidebar d-flex flex-column p-3">
-      <img src="../../img/logo.png" alt="Logo" class="logo mb-4">
-
-      <ul class="nav nav-pills flex-column mb-auto secciones">
-        <li class="nav-item"><a href="../Clientes/index.html" class="nav-link">Clientes</a></li>
-        <li><a href="../Ubicaciones/index.html" class="nav-link active">Ubicaciones</a></li>
-        <li><a href="../Grabaciones/index.html" class="nav-link">Grabaciones</a></li>
-        <li><a href="../Servicios/index.html" class="nav-link">Servicios</a></li>
-        <li><a href="../Soporte/index.html" class="nav-link">Soporte</a></li>
-        <li><a href="../GestionPagos/index.html" class="nav-link">Gestión de Pagos</a></li>
+    <div class="sidebar bg-dark text-white d-flex flex-column p-3" style="width: 250px; height: 100vh;">
+      <div class="text-center mb-4">
+        <img src="../../img/logo.png" alt="Logo" class="img-fluid mb-2" style="max-height: 80px;">
+        <h4>Admin Panel</h4>
+      </div>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item"><a href="../Clientes/index.html" class="nav-link text-white">Clientes</a></li>
+        <li><a href="../Ubicaciones/index.html" class="nav-link active text-white bg-primary">Ubicaciones</a></li>
+        <li><a href="../Grabaciones/index.html" class="nav-link  text-white ">Grabaciones</a></li>
+        <li><a href="../Servicios/index.html" class="nav-link text-white">Servicios</a></li>
+        <li><a href="../Soporte/index.html" class="nav-link text-white">Soporte</a></li>
+        <li><a href="../GestionPagos/index.html" class="nav-link text-white">Gestión de Pagos</a></li>
       </ul>
+      <div class="mt-auto">
+        <a href="#" class="btn btn-danger w-100">Cerrar Sesión</a>
+      </div>
     </div>
 
     <!-- Contenido principal -->
     <div class="flex-grow-1 p-4">
-      <h2 class="text-center mb-4">Gestión de Clientes</h2>
-
-      <!-- Buscador -->
-      <div class="row mb-3">
-        <div class="col-md-3">
-          <label>ID Opcional</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="col-md-3">
-          <label>Correo</label>
-          <input type="email" class="form-control">
-        </div>
-        <div class="col-md-3">
-          <label>Nombre</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="col-md-3 d-flex align-items-end">
-          <button class="btn btn-primary w-100">Buscar</button>
-        </div>
+      <h2 class="text-center mb-4 text-primary">Ubicaciones</h2>
+      <div class="p-4 bg-white rounded shadow-sm">
+        <h5 class="text-center mb-4 text-primary">Gestion de Ubicaciones</h5>
+        <p class="text-center">Aquí puedes gestionar las Ubicaciones de los clientes.</p>
       </div>
-
-      <!-- Base de datos -->
-      <div class="p-3 border rounded">
-        <h5 class="text-center mb-3 text-danger">Base de datos</h5>
-
-        <table class="table table-bordered table-striped database-table">
-          <thead class="text-danger">
-            <tr>
-              <th>Clientes</th>
-              <th>Nombre Completo</th>
-              <th>Teléfono</th>
-              <th>Correo</th>
-              <th>Plan</th>
-              <th>Ubicación</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>1</td><td>Alejandro</td><td>123456789</td><td>ale@mail.com</td><td>Básico</td><td>CDMX</td></tr>
-            <tr><td>2</td><td>Ian</td><td>987654321</td><td>ian@mail.com</td><td>Premium</td><td>Monterrey</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Footer -->
-      <footer class="mt-5 text-center">
-        <p class="mb-0">Todos los derechos reservados S.A DE C.V</p>
-        <small>Made with ❤️ by Equipo 1</small>
-      </footer>
     </div>
   </div>
 
