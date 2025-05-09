@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gestión de Clientes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 <body class="bg-light">
 
@@ -16,13 +18,14 @@
         <h4>Admin Panel</h4>
       </div>
       <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item"><a href="../Clientes/index.html" class="nav-link active text-white bg-primary">Clientes</a></li>
+      <li class="nav-item"><a href="../Clientes/index.html" class="nav-link active text-white bg-primary">Clientes</a></li>
         <li><a href="../Ubicaciones/index.html" class="nav-link text-white">Ubicaciones</a></li>
         <li><a href="../Grabaciones/index.html" class="nav-link text-white">Grabaciones</a></li>
         <li><a href="../Servicios/index.html" class="nav-link text-white">Servicios</a></li>
         <li><a href="../Soporte/index.html" class="nav-link text-white">Soporte</a></li>
         <li><a href="../GestionPagos/index.html" class="nav-link text-white">Gestión de Pagos</a></li>
       </ul>
+  
       <div class="mt-auto">
         <a href="#" class="btn btn-danger w-100">Cerrar Sesión</a>
       </div>
@@ -32,59 +35,144 @@
     <div class="flex-grow-1 p-4">
       <h2 class="text-center mb-4 text-primary">Gestión de Clientes</h2>
 
-      <!-- Buscador -->
-      <div class="row mb-4">
-        <div class="col-md-3">
-          <label for="id" class="form-label">ID Opcional</label>
-          <input type="text" id="id" class="form-control" placeholder="Ej. 123">
-        </div>
-        <div class="col-md-3">
-          <label for="email" class="form-label">Correo</label>
-          <input type="email" id="email" class="form-control" placeholder="Ej. cliente@mail.com">
-        </div>
-        <div class="col-md-3">
-          <label for="name" class="form-label">Nombre</label>
-          <input type="text" id="name" class="form-control" placeholder="Ej. Juan Pérez">
-        </div>
-        <div class="col-md-3 d-flex align-items-end">
-          <button class="btn btn-primary w-100">Buscar</button>
+ <!-- Buscador y botón Agregar Cliente -->
+<div class="row mb-4 align-items-end">
+  <div class="col-md-3">
+    <label for="id" class="form-label text-primary fw-bold">ID Opcional</label>
+    <input type="text" id="id" class="form-control border-primary" placeholder="Ej. 123">
+  </div>
+  <div class="col-md-3">
+    <label for="name" class="form-label text-primary fw-bold">Nombre</label>
+    <input type="text" id="name" class="form-control border-primary" placeholder="Ej. Juan Pérez">
+  </div>
+  <div class="col-md-3">
+    <label for="email" class="form-label text-primary fw-bold">Correo</label>
+    <input type="email" id="email" class="form-control border-primary" placeholder="Ej. cliente@mail.com">
+  </div>
+  <div class="col-md-3 d-flex justify-content-between">
+    <button class="btn btn-outline-primary w-50 me-2 d-flex align-items-center justify-content-center">
+      <i class="bi bi-search me-2"></i> Buscar
+    </button>
+    <button class="btn btn-success w-50 d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#addClientModal">
+      <i class="bi bi-person-plus-fill me-2"></i> Agregar
+    </button>
+  </div>
+</div>
+
+      <!-- Modal para agregar cliente -->
+      <div class="modal fade" id="addClientModal" tabindex="-1" aria-labelledby="addClientModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+              <h5 class="modal-title" id="addClientModalLabel">Agregar Cliente</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <form id="addClientForm">
+                <div class="mb-3">
+                  <label for="clientName" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="clientName"  placeholder="Ingresa el nombre del cliente" required="true">
+                </div>
+                <div class="mb-3">
+                  <label for="clientLastName" class="form-label">Apellido</label>
+                  <input type="text" class="form-control" id="clientLastName" placeholder="Ingresa el apellido del cliente" required="true">
+                </div>
+                <div class="mb-3">
+                  <label for="clientPhone" class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" id="clientPhone" placeholder="Ingresa el número de teléfono" required="true">
+                </div>
+                <div class="mb-3">
+                  <label for="clientEmail" class="form-label">Correo Electrónico</label>
+                  <input type="email" class="form-control" id="clientEmail" placeholder="Ingresa el correo electrónico" required="true">
+                </div>
+                <div class="mb-3">
+                  <label for="clientAddress" class="form-label">Dirección</label>
+                  <input type="text" class="form-control" id="clientAddress" placeholder="Ingresa la dirección" required="true">
+                </div>
+                <button type="submit" class="btn btn-success w-100" id="botonAgregar">Guardar Cliente</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Modal para editar cliente -->
+      <div class="modal fade" id="editClientModal" tabindex="-1" aria-labelledby="editClientModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="editClientModalLabel">Editar Cliente</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <form id="editClientForm">
+                <input type="hidden" id="editClientId">
+                <div class="mb-3">
+                  <label for="editClientName" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="editClientName" placeholder="Ingresa el nombre del cliente" required>
+                </div>
+                <div class="mb-3">
+                  <label for="editClientLastName" class="form-label">Apellido</label>
+                  <input type="text" class="form-control" id="editClientLastName" placeholder="Ingresa el apellido del cliente" required>
+                </div>
+                <div class="mb-3">
+                  <label for="editClientPhone" class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" id="editClientPhone" placeholder="Ingresa el número de teléfono" required>
+                </div>
+                <div class="mb-3">
+                  <label for="editClientEmail" class="form-label">Correo Electrónico</label>
+                  <input type="email" class="form-control" id="editClientEmail" placeholder="Ingresa el correo electrónico" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100" id="botonActualizar">Guardar Cambios</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para confirmar eliminación -->
+<div class="modal fade" id="deleteClientModal" tabindex="-1" aria-labelledby="deleteClientModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="deleteClientModalLabel">Confirmar Eliminación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que deseas eliminar este cliente? Esta acción no se puede deshacer.</p>
+        <input type="hidden" id="deleteClientId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" id="botonEliminar" class="btn btn-danger">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
       <!-- Base de datos -->
       <div class="p-4 bg-white rounded shadow-sm">
         <h5 class="text-center mb-4 text-primary">Base de Datos</h5>
-        <table class="table table-bordered table-hover">
-          <thead class="table-primary">
+        <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+        <table class="table table-bordered table-hover" >
+          <thead class="table-primary sticky-top">
             <tr>
               <th>#</th>
+              <th>ID Cliente</th>
               <th>Nombre Completo</th>
               <th>Teléfono</th>
               <th>Correo</th>
-              <th>Plan</th>
-              <th>Ubicación</th>
+              <th>Acciones</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Alejandro</td>
-              <td>123456789</td>
-              <td>ale@mail.com</td>
-              <td>Básico</td>
-              <td>CDMX</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Ian</td>
-              <td>987654321</td>
-              <td>ian@mail.com</td>
-              <td>Premium</td>
-              <td>Monterrey</td>
-            </tr>
-          </tbody>
+        <tbody id="tablaClientes">
+          
+        </tbody>
         </table>
       </div>
+      </div>
+
+      
 
       <!-- Footer -->
       <footer class="mt-5 text-center">
@@ -95,5 +183,11 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module" src="index.js" defer ></script>
+  <script type="module" src="update.js" defer></script>
+  <script type="module" src="delete.js"></script>
+  <script type="module" src="add.js"></script>
 </body>
 </html>
