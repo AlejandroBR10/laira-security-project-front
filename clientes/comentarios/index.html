@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comentarios - LAIRA Security</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ffffff, #d0e7ff);
+            background-attachment: fixed;
+        }
+        .comment-box {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="LAIRA Security Logo" width="40" height="40"> LAIRA SECURITY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLAIRA" aria-controls="navbarLAIRA" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarLAIRA">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/clientes/productos/index.html">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/clientes/contacto/">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/clientes/servicios/">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/clientes/comentarios/">Comentarios</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<!-- Comentarios Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Comentarios de nuestros clientes</h2>
+        <div class="row">
+            <!-- Formulario para agregar comentarios -->
+            <div class="col-md-6">
+                <div class="comment-box">
+                    <h4>Deja tu comentario</h4>
+                    <form id="commentForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="name" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comentario</label>
+                            <textarea class="form-control" id="comment" rows="4" placeholder="Escribe tu comentario aquí" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Lista de comentarios -->
+            <div class="col-md-6">
+                <div class="comment-box">
+                    <h4>Comentarios recientes</h4>
+                    <ul id="commentList" class="list-unstyled">
+                        <!-- Los comentarios se agregarán aquí dinámicamente -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Estadísticas de Comentarios -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Estadísticas de Comentarios</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <h3 class="text-primary">120+</h3>
+                <p>Comentarios recibidos</p>
+            </div>
+            <div class="col-md-4">
+                <h3 class="text-primary">4.8/5</h3>
+                <p>Calificación promedio</p>
+            </div>
+            <div class="col-md-4">
+                <h3 class="text-primary">98%</h3>
+                <p>Satisfacción del cliente</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonios Destacados -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Testimonios Destacados</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="comment-box">
+                    <p>"El servicio de LAIRA Security es excelente. Me siento seguro en todo momento."</p>
+                    <p class="text-end"><strong>- Juan Pérez</strong></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="comment-box">
+                    <p>"La instalación fue rápida y profesional. Muy recomendados."</p>
+                    <p class="text-end"><strong>- María López</strong></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="comment-box">
+                    <p>"El monitoreo 24/7 me da mucha tranquilidad. Gran equipo."</p>
+                    <p class="text-end"><strong>- Carlos García</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Preguntas Frecuentes -->
+
+
+<script>
+    // Manejo de comentarios dinámicos
+    document.getElementById('commentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Obtener valores del formulario
+        const name = document.getElementById('name').value;
+        const comment = document.getElementById('comment').value;
+
+        // Crear un nuevo elemento de comentario
+        const commentItem = document.createElement('li');
+        commentItem.classList.add('mb-3', 'p-3', 'border', 'rounded');
+        commentItem.innerHTML = `<strong>${name}:</strong> <p>${comment}</p>`;
+
+        // Agregar el comentario a la lista
+        document.getElementById('commentList').appendChild(commentItem);
+
+        // Limpiar el formulario
+        document.getElementById('commentForm').reset();
+    });
+</script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="text-center">Hecho con ❤️ por Equipo 1 | Todos los derechos reservados © 2025</p>
+        </div>
+    </footer>
+
+
+</body>
+</html>

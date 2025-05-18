@@ -7,8 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* Estilos personalizados */
+
+        body {
+        background: linear-gradient(to bottom, #ffffff, #d0e7ff); 
+        background-attachment: fixed; 
+    }
         .hero {
-            background: url('ruta/a/tu/imagen/banner.jpg') no-repeat center center;
+            background: url('/img/inicio/hero.jpg') no-repeat center center;
             background-size: cover;
             color: rgb(0, 0, 0);
             text-align: center;
@@ -26,32 +31,95 @@
         }
     </style>
 </head>
-<body>
-
-    <!-- Header / Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#"><img src="ruta/a/logo.png" alt="LAIRA Security" height="40"> LAIRA SECURITY</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Comentarios</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1 class="display-4 fw-bold">Protegemos a tu hogar con los mejores servicios de seguridad</h1>
+<body class="bg-gradient">
+<!-- Header / Navbar -->
+<div class="bg-white border-bottom py-2 px-3 d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center gap-3">
+        <img src="/img/logo.png" alt="LAIRA Security Logo" width="40" height="40">
+        <span class="text-muted small">Nuevas contrataciones <strong>800 5526 238</strong></span>
+        <div class="vr mx-2"></div>
+        <span class="text-muted small">Atención al cliente <strong>800 2025 238</strong></span>
     </div>
+    <div class="dropdown"></div>
+        <a class="text-decoration-none text-primary dropdown-toggle small" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle"></i> Clientes LAIRA
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+        </ul>
+    </div>
+</div>
 
+<!-- Menú principal -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLAIRA" aria-controls="navbarLAIRA" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarLAIRA">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientes/productos/index.html">Productos</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="serviciosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Servicios
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="serviciosDropdown">
+                        <li><a class="dropdown-item" href="/clientes/servicios/">Monitoreo</a></li>
+                        <li><a class="dropdown-item" href="/clientes/servicios/">Instalación</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientes/contacto/">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientes/comentarios/">Comentarios</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: #007bff;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #007bff;
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+</style></ul>
+
+<!-- Hero Section -->
+<div class="hero" style="height: 90vh; position: relative;">
+    <img src="/img/inicio/hero.jpg" alt="Protección y seguridad" class="img-fluid w-100 h-100" style="object-fit: cover;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); text-align: center;">
+        <h1 class="fw-bold" style="font-size: 2rem;">Confianza y tranquilidad para tu familia</h1>
+        <p style="font-size: 1.2rem;">Servicios de seguridad diseñados para proteger lo que más importa</p>
+    </div>
+</div>
     <!-- Beneficios / ¿Por qué LAIRA? -->
     <section class="py-5 text-center bg-white">
         <div class="container">
@@ -81,16 +149,77 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <img src="ruta/a/imagen/quienes-somos.jpg" class="img-fluid rounded" alt="Quiénes somos">
+                    <img src="/img/inicio/quienessomos.jpg" class="img-fluid rounded" alt="Quiénes somos" style="max-width: 80%; height: 250px; object-fit: cover; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
                 </div>
                 <div class="col-md-6">
                     <h2>¿Quiénes somos?</h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <a href="#" class="btn btn-primary">Conoce más</a>
+                    <a href="/clientes/contacto/" class="btn btn-primary">Conoce más</a>
                 </div>
             </div>
         </div>
     </section>
+<!-- Preguntas Frecuentes -->
+<section class="py-5 text-center" style="background-color: #f9f9f9;">
+    <div class="container">
+        <h2 class="mb-4" style="color: black; font-weight: medium;">Preguntas Frecuentes</h2>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item" style="border: 1px solid #ddd; border-radius: 5px; margin-bottom: 8px; padding: 5px;">
+                <h2 class="accordion-header" id="faqHeading1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1" style="background-color: #007bff; color: white; font-weight: bold; font-size: 0.9rem;">
+                        ¿Qué servicios ofrece LAIRA Security?
+                    </button>
+                </h2>
+                <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body" style="background-color: #ffffff; color: #333; font-size: 0.9rem;">
+                        Ofrecemos servicios de monitoreo 24/7, instalación de sistemas de seguridad, y soporte técnico especializado para garantizar tu tranquilidad.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item" style="border: 1px solid #ddd; border-radius: 5px; margin-bottom: 8px; padding: 5px;">
+                <h2 class="accordion-header" id="faqHeading2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2" style="background-color: #007bff; color: white; font-weight: bold;">
+                        ¿Cómo puedo contratar sus servicios?
+                    </button>
+                </h2>
+                <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body" style="background-color: #ffffff; color: #333;">
+                        Puedes contratar nuestros servicios a través de nuestra página web, visitando la sección de <a href="/clientes/servicios/" style="color: #007bff; text-decoration: underline;">Servicios</a>, o contactándonos directamente.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item" style="border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px;">
+                <h2 class="accordion-header" id="faqHeading3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3" style="background-color: #007bff; color: white; font-weight: bold;">
+                        ¿Qué garantías ofrecen?
+                    </button>
+                </h2>
+                <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body" style="background-color: #ffffff; color: #333;"></div>
+                        Ofrecemos garantía total en nuestros equipos y servicios, además de soporte técnico constante para resolver cualquier inconveniente.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+    </div>
+</section>
+
+<!-- Imagen Destacada -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2>Protección personalizada</h2>
+                <p>Descubre cómo adaptamos nuestros servicios de seguridad a tus necesidades específicas. Tu tranquilidad es nuestra prioridad.</p>
+                <a href="/clientes/servicios/" class="btn btn-primary">Saber más</a>
+            </div>
+            <div class="col-md-6">
+                <img src="/img/inicio/proteccionperso.jpg" class="img-fluid rounded" alt="Protección personalizada" style="max-width: 80%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -102,4 +231,4 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html></div>
+</html>
