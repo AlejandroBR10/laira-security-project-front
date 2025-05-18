@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="css/normalize.css" as="style">
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Contacto</title>
+</head>
+
+<body>
+    <!-- Header / Navbar -->
+    <div class="bg-white border-bottom py-2 px-3 d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+            <img src="../../img/logo.png" alt="LAIRA Security Logo" width="40" height="40">
+            <span class="text-muted small">Nuevas contrataciones <strong>800 5526 238</strong></span>
+            <div class="vr mx-2"></div>
+            <span class="text-muted small">Atención al cliente <strong>800 2025 238</strong></span>
+        </div>
+        <div class="dropdown"></div>
+            <a class="text-decoration-none text-primary dropdown-toggle small" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i> Clientes LAIRA
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Menú principal -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLAIRA" aria-controls="navbarLAIRA" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarLAIRA">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../productos/index.html">Productos</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="../servicios/index.html">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../comentarios/index.html">Comentarios</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="contenido-hero">
+            <h2>Contacto para atención a clientes</h2>
+            <h3>800 2025 238</h3>
+        </div>  <!-- Fin .contenido-hero -->
+    </section>
+
+    <form class="formulario">
+        <fieldset>
+            <legend>Contáctanos llenando todos los campos</legend>
+            
+            <div class="contenedor-campos">
+                <div class="campo">
+                    <label>Asunto</label>
+                    <input class="input-text" type="text" placeholder="Tu Asunto">
+                </div>
+
+                <div class="campo">
+                    <label>Nombre</label>
+                    <input class="input-text" type="text" placeholder="Tu Nombre">
+                </div>
+                
+                <div class="campo">
+                    <label>Teléfono</label>
+                    <input class="input-text" type="tel" placeholder="Tu Teléfono">
+                </div>
+                
+                <div class="campo">
+                    <label>Correo</label>
+                    <input class="input-text" type="email" placeholder="Tu Email">
+                </div>
+                
+                <div class="campo">
+                    <label>Mensaje</label>
+                    <textarea class="input-textarea"></textarea>
+                </div>
+            </div> <!-- Fin .contenedor-campos -->
+
+            <div class="alinear-derecha flex">
+                <input class="boton w-sm-100" type="submit" value="Enviar">
+            </div>
+            
+        </fieldset>
+    </form>
+
+    <footer class="footer">
+        <p>Made With ❤️ By Equipo 1 | Todos los derechos reservados © 2025</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
