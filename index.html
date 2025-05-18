@@ -32,25 +32,85 @@
     </style>
 </head>
 <body class="bg-gradient">
+<!-- Header / Navbar -->
+<div class="bg-white border-bottom py-2 px-3 d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center gap-3">
+        <img src="/img/logo.png" alt="LAIRA Security Logo" width="40" height="40">
+        <span class="text-muted small">Nuevas contrataciones <strong>800 5526 238</strong></span>
+        <div class="vr mx-2"></div>
+        <span class="text-muted small">Atención al cliente <strong>800 2025 238</strong></span>
+    </div>
+    <div class="dropdown"></div>
+        <a class="text-decoration-none text-primary dropdown-toggle small" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle"></i> Clientes LAIRA
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+        </ul>
+    </div>
+</div>
 
-    <!-- Header / Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="/img/logo.png"><img src="/img/logo.png" alt="LAIRA Security" height="40"> LAIRA SECURITY</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/clientes/productos/index.html">Productos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/clientes/contacto/">Contacto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/clientes/servicios/">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/clientes/comentarios/">Comentarios</a></li>
-                </ul>
-            </div>
+<!-- Menú principal -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLAIRA" aria-controls="navbarLAIRA" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarLAIRA">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientes/productos/index.html">Productos</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="serviciosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Servicios
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="serviciosDropdown">
+                        <li><a class="dropdown-item" href="/clientes/servicios/">Monitoreo</a></li>
+                        <li><a class="dropdown-item" href="/clientes/servicios/">Instalación</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientes/contacto/">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientes/comentarios/">Comentarios</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
+<style>
+    .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: #007bff;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #007bff;
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+</style></ul>
 
 <!-- Hero Section -->
 <div class="hero" style="height: 90vh; position: relative;">
