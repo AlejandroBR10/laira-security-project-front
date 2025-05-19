@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .producto-container {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto;
+            align-items: center;
+            justify-content: center;
+        }
+        .galeria-miniaturas {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+        .galeria-miniaturas img {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: border 0.2s, transform 0.2s, box-shadow 0.2s;
+            background: #fff;
+        }
+        .galeria-miniaturas img.selected,
+        .galeria-miniaturas img:hover {
+            border: 2px solid #005DAA;
+            transform: scale(1.18);
+            box-shadow: 0 4px 24px rgba(0,93,170,0.10);
+            z-index: 1;
+        }
+        .imagen-principal {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 400px;
+        }
+        .imagen-principal img {
+            max-width: 700px;
+            max-height: 700px;
+            object-fit: contain;
+            transition: box-shadow 0.2s;
+            box-shadow: none;
+            background: #fff;
+            border-radius: 16px;
+        }
+        .info-producto {
+            flex: 1.5;
+            min-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .info-producto h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .precio {
+            color: #0091ea;
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .opciones {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+            justify-content: center;
+        }
+        .opcion {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px 18px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: border 0.2s;
+        }
+        .opcion.selected {
+            border: 2px solid #005DAA;
+            font-weight: bold;
+        }
+        .descripcion {
+            font-size: 0.85rem;
+            color: #444;
+            margin-bottom: 2rem;
+        }
+        .btn-comprar {
+            background: #005DAA;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 18px 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .btn-comprar:hover {
+            background: #005eaac2;
+        }
+        @media (max-width: 1100px) {
+            .producto-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+            .imagen-principal img {
+                max-width: 90vw;
+                max-height: 400px;
+            }
+            .galeria-miniaturas img {
+                width: 90px;
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+ <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="logo.png" alt="LAIRA Security" height="40"> LAIRA SECURITY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/clientes/productos/index.html">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="clientes/contacto/">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="clientes/servicios/">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="clientes/comentarios/">Comentarios</a></li>
+                </ul>
+            </div>
+        </div> 
+    </nav>
+
+    <div class="producto-container">
+
+        <div class="galeria-miniaturas">
+    <img src="./Hogar/HogarMiniatura1.webp" alt="Miniatura 1" class="selected" onclick="cambiarImagen('./Hogar/Hogar1.webp', this)">
+    <img src="./Hogar/HogarMiniatura2.webp" alt="Miniatura 2" onclick="cambiarImagen('./Hogar/HogarMiniatura2.webp', this)">
+    <img src="./Hogar/HogarMiniatura3.webp" alt="Miniatura 3" onclick="cambiarImagen('./Hogar/HogarMiniatura3.webp', this)">
+</div>
+<div class="imagen-principal">
+    <img id="img-principal" src="./Hogar/Hogar1.webp" alt="Producto principal">
+</div>
+
+        <div class="info-producto">
+            <h2>Mini Cámara IP 1 Megapíxel / Wi-Fi / Detección de Movimiento / Notificación Push / Audio de dos vías / Ranura SD</h2>
+            <div class="precio">$1299.89</div>
+        
+            <div class="descripcion">
+                Mejora la seguridad de tu hogar o negocio con la Mini Cámara IP Wi-Fi EZVIZ, un dispositivo compacto y eficiente diseñado para brindarte tranquilidad en todo momento. Gracias a su conectividad Wi-Fi y funciones avanzadas, podrás monitorear tu espacio desde cualquier lugar.
+                <br><br>
+                <b>Características Principales:</b><br>
+                 <b>Resolución HD:</b> Imágenes nítidas con una resolución de 1 Megapíxel (1280 x 720), ideales para monitoreo en tiempo real.<br><br>
+                <b>Lente Gran Angular:</b> Lente de 2.8 mm que ofrece un campo de visión de 90° (horizontal) y 111° (diagonal), cubriendo amplias áreas.<br><br>
+                <b>Audio de Dos Vías:</b> Incluye micrófono y bocina integrados, permitiendo comunicación en tiempo real.<br><br>
+                <b>Visión Nocturna:</b> Alcance de hasta 7.5 metros con tecnología IR para vigilancia 24/7, incluso en total oscuridad.<br><br>
+                <b>Compresión Eficiente:</b> Utiliza el estándar H.264, optimizando el almacenamiento sin perder calidad de imagen.<br><br>
+                <b>Conexión Wi-Fi:</b> Sin necesidad de cables adicionales, conecta fácilmente la cámara a tu red doméstica.<br><br>
+                <b>Almacenamiento Local:</b> Soporte para tarjeta Micro SD de hasta 128 GB (tarjeta no incluida) para grabación segura y accesible.
+            </div>
+            <button class="btn-comprar">COMPRAR</button>
+        </div>
+    </div>
+    <script>
+        function cambiarImagen(src, el) {
+            document.getElementById('img-principal').src = src;
+            document.querySelectorAll('.galeria-miniaturas img').forEach(img => img.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+    </script>
+</body>
+</html>
