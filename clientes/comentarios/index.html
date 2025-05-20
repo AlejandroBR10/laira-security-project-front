@@ -17,27 +17,82 @@
             padding: 20px;
             background-color: #fff;
         }
+        .shadow-navbar {
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.25);
+        }
+        .navbar-container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .nav-link.nav-underline {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-link.nav-underline::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 2px;
+            background-color: transparent;
+            box-shadow: none;
+            transition: width 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;  
+        }
+        .nav-link.nav-underline:hover::after,
+        .nav-link.nav-underline.active::after {
+            width: 100%;
+            background-color: #007bff;
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="LAIRA Security Logo" width="40" height="40"> LAIRA SECURITY</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLAIRA" aria-controls="navbarLAIRA" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarLAIRA">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/clientes/productos/index.html">Productos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/clientes/contacto/">Contacto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/clientes/servicios/">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/clientes/comentarios/">Comentarios</a></li>
-                </ul>
-            </div>
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-navbar">
+    <div class="container navbar-container">
+        <!-- Logo alineado a la izquierda -->
+        <a class="navbar-brand" href="../../index.html">
+            <img src="../../img/logo.png" height="25" alt="">
+        </a>
+        <!-- Botón responsive -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Menú alineado a la derecha -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../../index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../productos/index.html">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../servicios/index.html">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../contacto/index.html">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline active" href="../comentarios/index.html">Comentarios</a>
+                </li>
+                <!-- Dropdown de usuario -->
+                <li class="nav-item dropdown ms-3">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../../img/user.png" alt="Usuario" width="32" height="32" class="rounded-circle me-2">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
 <!-- Comentarios Section -->
 <section class="py-5">
     <div class="container">
@@ -60,12 +115,11 @@
                     </form>
                 </div>
             </div>
-
             <!-- Lista de comentarios -->
             <div class="col-md-6">
                 <div class="comment-box">
                     <h4>Comentarios recientes</h4>
-                    <ul id="commentList" class="list-unstyled">
+                    <ul id="commentList" class="list-unstyled" style="max-height: 300px; overflow-y: auto;">
                         <!-- Los comentarios se agregarán aquí dinámicamente -->
                     </ul>
                 </div>
@@ -122,37 +176,24 @@
     </div>
 </section>
 
-<!-- Preguntas Frecuentes -->
-
-
 <script>
     // Manejo de comentarios dinámicos
     document.getElementById('commentForm').addEventListener('submit', function(e) {
         e.preventDefault();
-
-        // Obtener valores del formulario
         const name = document.getElementById('name').value;
         const comment = document.getElementById('comment').value;
-
-        // Crear un nuevo elemento de comentario
         const commentItem = document.createElement('li');
         commentItem.classList.add('mb-3', 'p-3', 'border', 'rounded');
         commentItem.innerHTML = `<strong>${name}:</strong> <p>${comment}</p>`;
-
-        // Agregar el comentario a la lista
         document.getElementById('commentList').appendChild(commentItem);
-
-        // Limpiar el formulario
         document.getElementById('commentForm').reset();
     });
 </script>
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p class="text-center">Hecho con ❤️ por Equipo 1 | Todos los derechos reservados © 2025</p>
-        </div>
-    </footer>
-
-
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p class="text-center">Hecho con ❤️ por Equipo 1 | Todos los derechos reservados © 2025</p>
+    </div>
+</footer>
 </body>
 </html>
