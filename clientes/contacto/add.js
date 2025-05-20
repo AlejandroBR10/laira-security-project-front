@@ -21,9 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newMessage),
+        body: JSON.stringify(newMessage)
       });
 
+      const data = await response.json();
+      console.log(data);
       if (response.status === 201) {
         alert("Mensaje enviado exitosamente.");
       

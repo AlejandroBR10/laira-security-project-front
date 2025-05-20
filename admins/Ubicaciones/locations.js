@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:4000/locations'; 
+import { API_URL } from "../../constants/constants";
+
 const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ4YW5AZ21haWwuY29tIiwidXNlclBhc3N3b3JkIjoiJDJiJDA1JHRocjRyQmpXWk1xT1VoOXlqcEphQmV0cHZhczBQdEV5TGNTdmxRQmVrbWRieHR3bHRRSWtpIiwidXNlclJvbGVzIjpbIkFkbWluIl0sImlhdCI6MTc0Nzc1Mzg0OCwiZXhwIjoxNzQ4MzU4NjQ4fQ.3SGFviu89G8bm25S8gI3cnaAhBnjkluxtmZedP2ieQ8'; // Reemplaza con tu token de autenticación
 
 let map = L.map('map').setView([20.631929958644648, -100.4113234764623], 6); 
@@ -7,12 +8,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-fetch(API_URL, {
+fetch(`${API_URL}/locations`, {
   method: 'GET',
-  headers: {
-    'Authorization': `Bearer ${TOKEN}`, // Agregar el token en el encabezado
+  headers: {// Agregar el token en el encabezado
     'Content-Type': 'application/json'
-  }
+  },
+  credentials : "include"
 })
   .then(response => {
     if (!response.ok) {
