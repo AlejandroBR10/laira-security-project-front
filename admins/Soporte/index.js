@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const response = await fetch(`${API_URL}/support`, {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
+      headers: { "Content-Type": "application/json" }
     });
 
     if (response.status === 200) {
@@ -44,8 +43,9 @@ function renderMensajes(mensajes) {
       </tr>
     `;
     tableBody.innerHTML += row;
-    window.deleteProduct = deleteMessage;
   });
+
+  window.deleteMessage = deleteMessage;
 }
 
 function deleteMessage(supportId) {

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Soporte </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 
@@ -19,7 +20,7 @@
         <li class="nav-item"><a href="../Clientes/index.html" class="nav-link text-white">Clientes</a></li>
         <li><a href="../Ubicaciones/index.html" class="nav-link text-white">Ubicaciones</a></li>
         <li><a href="../Grabaciones/index.html" class="nav-link text-white">Grabaciones</a></li>
-        <li><a href="../Servicios/index.html" class="nav-link text-white">Servicios</a></li>
+        <li><a href="../Servicios/index.html" class="nav-link text-white">Productos</a></li>
         <li><a href="../Soporte/index.html" class="nav-link text-white bg-primary">Soporte</a></li>
         <li><a href="../GestionPagos/index.html" class="nav-link text-white">Gestión de Pagos</a></li>
       </ul>
@@ -30,7 +31,7 @@
 
   <!-- Contenido principal -->
     <div class="flex-grow-1 p-4">
-      <h2 class="text-center mb-4 text-primary">Gestión de Productos</h2>
+      <h2 class="text-center mb-4 text-primary">Gestión de Soporte</h2>
 
       <!-- Modal para confirmar eliminación -->
       <div class="modal fade" id="deleteMessageModal" tabindex="-1" aria-labelledby="deleteMessageModalLabel" aria-hidden="true">
@@ -41,7 +42,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
             <div class="modal-body">
-              <p>¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer.</p>
+              <p>¿Estás seguro de que deseas eliminar este mensaje? Esta acción no se puede deshacer.</p>
               <input type="hidden" id="deleteSupportId">
             </div>
             <div class="modal-footer">
@@ -54,14 +55,14 @@
 
       <!-- Base de datos de productos -->
       <div class="p-4 bg-white rounded shadow-sm">
-        <h5 class="text-center mb-4 text-primary">Base de Datos de Mensajes</h5>
+        <h5 class="text-center mb-4 text-primary">Base de Datos de Soporte</h5>
         <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
           <table class="table table-bordered table-hover">
           <thead class="table-primary sticky-top">
             <tr>
               <th>#</th>
-              <th>ID Mensaje</th>
-              <th>Nombre de Cliente</th>
+              <th>ID </th>
+              <th>Nombre</th>
               <th>Teléfono</th>
               <th>Correo</th>
               <th>Mensaje</th>
