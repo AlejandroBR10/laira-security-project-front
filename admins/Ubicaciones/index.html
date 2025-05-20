@@ -3,41 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grabaciones</title>
+  <title>Gestión de Ubicaciones</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #212529;
+      color: #fff;
+      height: 100vh;
+      position: fixed;
+    }
+    .sidebar .nav-link {
+      color: #fff;
+      font-weight: 500;
+    }
+    .sidebar .nav-link.active {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .sidebar .btn-danger {
+      margin-top: auto;
+    }
+    .content {
+      margin-left: 250px;
+      padding: 20px;
+      flex-grow: 1;
+    }
+    h2, h3 {
+      color: #007bff; /* Cambiar color de los títulos */
+    }
+    #user-select {
+      width: 70%; /* Hacer más corto el botón desplegable */
+      margin: 0 auto; /* Centrar el botón desplegable */
+      border-radius: 7px; /* Bordes redondeados */
+      border: 1.5px solid #007bff; /* Bordes azules */
+    }
+    #user-select:focus {
+      outline: none;
+      box-shadow: 0 0 5px #007bff; /* Sombra azul al enfocar */
+    }
+    .map-container {
+      margin: 20px auto;
+      max-width: 800px;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1.5px solid #007bff; /* Bordes azules */
+      box-shadow: 0 4px 8px rgba(109, 108, 108, 0.1);
+    }
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+    footer {
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
 </head>
-<body class="bg-light">
+<body>
 
-  <div class="d-flex">
-    <!-- Sidebar -->
-    <div class="sidebar bg-dark text-white d-flex flex-column p-3" style="width: 250px; height: 100vh;">
-      <div class="text-center mb-4">
-        <img src="../../img/logo.png" alt="Logo" class="img-fluid mb-2" style="max-height: 80px;">
-        <h4>Admin Panel</h4>
-      </div>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item"><a href="../Clientes/index.html" class="nav-link text-white">Clientes</a></li>
-        <li><a href="../Ubicaciones/index.html" class="nav-link active text-white bg-primary">Ubicaciones</a></li>
-        <li><a href="../Grabaciones/index.html" class="nav-link  text-white ">Grabaciones</a></li>
-        <li><a href="../Servicios/index.html" class="nav-link text-white">Servicios</a></li>
-        <li><a href="../Soporte/index.html" class="nav-link text-white">Soporte</a></li>
-        <li><a href="../GestionPagos/index.html" class="nav-link text-white">Gestión de Pagos</a></li>
-      </ul>
-      <div class="mt-auto">
-        <a href="#" class="btn btn-danger w-100">Cerrar Sesión</a>
-      </div>
+  <!-- Sidebar -->
+  <div class="sidebar d-flex flex-column p-3">
+    <div class="text-center mb-4">
+      <img src="../../img/logo.png" alt="Logo" class="img-fluid mb-2" style="max-height: 80px;">
+      <h4>Admin Panel</h4>
+    </div>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item"><a href="../Clientes/index.html" class="nav-link">Clientes</a></li>
+      <li><a href="../Ubicaciones/index.html" class="nav-link active">Ubicaciones</a></li>
+      <li><a href="../Grabaciones/index.html" class="nav-link">Grabaciones</a></li>
+      <li><a href="../Servicios/index.html" class="nav-link">Servicios</a></li>
+      <li><a href="../Soporte/index.html" class="nav-link">Soporte</a></li>
+      <li><a href="../GestionPagos/index.html" class="nav-link">Gestión de Pagos</a></li>
+    </ul>
+    <a href="#" class="btn btn-danger w-100">Cerrar Sesión</a>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="content">
+    <h2 class="text-center mb-4">Gestión de Ubicaciones</h2>
+
+    <!-- Buscador -->
+    <h3 class="text-center">Mapa de Ubicaciones</h3>
+    <select id="user-select" class="form-select mb-3">
+      <option value="0">Selecciona una usuario</option>
+    </select>
+
+    <!-- Mapa dentro de un contenedor estilizado -->
+    <div class="map-container">
+      <div id="map"></div>
     </div>
 
-    <!-- Contenido principal -->
-    <div class="flex-grow-1 p-4">
-      <h2 class="text-center mb-4 text-primary">Ubicaciones</h2>
-      <div class="p-4 bg-white rounded shadow-sm">
-        <h5 class="text-center mb-4 text-primary">Gestion de Ubicaciones</h5>
-        <p class="text-center">Aquí puedes gestionar las Ubicaciones de los clientes.</p>
-      </div>
-    </div>
+    <!-- Footer -->
+    <footer>
+      <p class="mb-0">Todos los derechos reservados S.A DE C.V</p>
+      <small>Made with ❤️ by Equipo 1</small>
+    </footer>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script src="./locations.js"></script>
 </body>
 </html>
+
