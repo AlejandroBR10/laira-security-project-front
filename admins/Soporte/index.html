@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grabaciones</title>
+  <title>Soporte </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body class="bg-light">
@@ -28,16 +28,64 @@
       </div>
     </div>
 
-    <!-- Contenido principal -->
+  <!-- Contenido principal -->
     <div class="flex-grow-1 p-4">
-      <h2 class="text-center mb-4 text-primary">Soporte</h2>
-      <div class="p-4 bg-white rounded shadow-sm">
-        <h5 class="text-center mb-4 text-primary">Ayuda con nuestro Soporte</h5>
-        <p class="text-center">Aquí puedes apoyarte de soporte.</p>
+      <h2 class="text-center mb-4 text-primary">Gestión de Productos</h2>
+
+      <!-- Modal para confirmar eliminación -->
+      <div class="modal fade" id="deleteMessageModal" tabindex="-1" aria-labelledby="deleteMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+              <h5 class="modal-title" id="deleteMessageModalLabel">Confirmar Eliminación</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer.</p>
+              <input type="hidden" id="deleteSupportId">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" id="botonEliminarMensaje" class="btn btn-danger">Eliminar</button>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Base de datos de productos -->
+      <div class="p-4 bg-white rounded shadow-sm">
+        <h5 class="text-center mb-4 text-primary">Base de Datos de Mensajes</h5>
+        <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+          <table class="table table-bordered table-hover">
+          <thead class="table-primary sticky-top">
+            <tr>
+              <th>#</th>
+              <th>ID Mensaje</th>
+              <th>Nombre de Cliente</th>
+              <th>Teléfono</th>
+              <th>Correo</th>
+              <th>Mensaje</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaMensajes">
+            <!-- Aquí van los productos dinámicamente -->
+          </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="mt-5 text-center">
+        <p class="mb-0 text-muted">Todos los derechos reservados S.A DE C.V</p>
+        <small class="text-muted">Made with ❤️ by Equipo 1</small>
+      </footer>
     </div>
   </div>
 
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="index.js" defer></script>
+  <script type="module" src="delete.js"></script>
 </body>
 </html>
