@@ -38,9 +38,22 @@
         <p class="text-center">Aquí puedes gestionar los pagos de los clientes.</p>
 
         <!-- Selector de clientes -->
-        <div class="mb-4">
-          <label for="selectorClientes" class="form-label fw-bold text-primary">Selecciona un cliente:</label>
-          <select id="selectorClientes" class="form-select"></select>
+        <div class="row align-items-end mb-4">
+          <div class="col-md-6">
+            <label for="selectorClientes" class="form-label fw-bold text-primary">Selecciona un cliente:</label>
+            <select id="selectorClientes" class="form-select shadow-sm border-primary"></select>
+          </div>
+          <div class="col-md-6 text-end mt-3 mt-md-0">
+            <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#modalAgregarPago">
+              <i class="bi bi-plus-circle"></i> Agregar Pago
+            </button>
+            <button class="btn btn-warning me-2" id="btnEditarPago" disabled data-bs-toggle="modal" data-bs-target="#modalEditarPago">
+              <i class="bi bi-pencil-square"></i> Editar Pago
+            </button>
+            <button class="btn btn-danger" id="btnEliminarPago" disabled data-bs-toggle="modal" data-bs-target="#modalEliminarPago">
+              <i class="bi bi-trash"></i> Eliminar Pago
+            </button>
+          </div>
         </div>
 
         <!-- Resumen del cliente -->
@@ -67,9 +80,105 @@
     </div>
   </div>
 
+  <!-- Modales Bootstrap para agregar, editar y eliminar pago -->
+  <div class="modal fade" id="modalAgregarPago" tabindex="-1" aria-labelledby="modalAgregarPagoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="formAgregarPago">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title" id="modalAgregarPagoLabel"><i class="bi bi-plus-circle"></i> Agregar Pago</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Campos para agregar pago -->
+            <div class="mb-3">
+              <label class="form-label">Monto</label>
+              <input type="number" class="form-control" name="amount" required min="0">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Descripción</label>
+              <input type="text" class="form-control" name="description">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Estado</label>
+              <select class="form-select" name="status" required>
+                <option value="COMPLETED">Pagado</option>
+                <option value="PENDING">Pendiente</option>
+                <option value="FAILED">Fallido</option>
+              </select>
+            </div>
+            <input type="hidden" name="customerId" />
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalEditarPago" tabindex="-1" aria-labelledby="modalEditarPagoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="formEditarPago">
+          <div class="modal-header bg-warning text-dark">
+            <h5 class="modal-title" id="modalEditarPagoLabel"><i class="bi bi-pencil-square"></i> Editar Pago</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Campos para editar pago (rellenados por JS) -->
+            <div class="mb-3">
+              <label class="form-label">Monto</label>
+              <input type="number" class="form-control" name="amount" required min="0">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Descripción</label>
+              <input type="text" class="form-control" name="description">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Estado</label>
+              <select class="form-select" name="status" required>
+                <option value="COMPLETED">Pagado</option>
+                <option value="PENDING">Pendiente</option>
+                <option value="FAILED">Fallido</option>
+              </select>
+            </div>
+            <input type="text" name="customerId" />
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalEliminarPago" tabindex="-1" aria-labelledby="modalEliminarPagoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="formEliminarPago">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="modalEliminarPagoLabel"><i class="bi bi-trash"></i> Eliminar Pago</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Estás seguro de que deseas eliminar este pago?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- jsPDF para facturación -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="index.js" type="module"></script>
+  <script src="add.js" type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

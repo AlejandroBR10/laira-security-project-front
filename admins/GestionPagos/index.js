@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tablaPagos = document.getElementById("tablaPagos");
   const resumenCliente = document.getElementById("resumenCliente");
   const selectorClientes = document.getElementById("selectorClientes");
+  const formAgregarPago = document.getElementById("formAgregarPago");
+  const inputCustomerIdAgregar = formAgregarPago?.querySelector('[name="customerId"]');
 
   // 1. Obtener clientes y llenar el selector
   try {
@@ -32,6 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           const clienteId = selectorClientes.value;
           mostrarResumenCliente(clienteId);
           mostrarPagos(clienteId);
+          if (inputCustomerIdAgregar) inputCustomerIdAgregar.value = clienteId;
         });
       }
     } else {
@@ -225,4 +228,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Abrir el PDF en una nueva ventana
     window.open(doc.output("bloburl"), "_blank");
   };
+
+  // Al abrir el modal de agregar pago, poner el cliente seleccionado por default
+  document.getElementById("modalAgregarPago")?.addEventListener("show.bs.modal", () => {
+    if (inputCustomerIdAgregar) inputCustomerIdAgregar.value = selectorClientes.value;
+  });
+
+  formAgregarPago.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    try {
+      await agregarPagoDesdeModal(formAgregarPago);
+      // Cierra el modal y recarga la tabla, etc.
+    } catch (err) {
+      alert(err.message);
+    }
+  });
 });
+

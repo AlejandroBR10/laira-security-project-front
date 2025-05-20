@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:4000";
+import { API_URL } from "../constants/constants";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.querySelector("form");
