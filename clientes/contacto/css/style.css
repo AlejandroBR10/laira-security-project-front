@@ -184,13 +184,12 @@ h1 {
     .contenedor-campos {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto auto 20rem;
+        grid-template-rows: auto auto 20rem;
         column-gap: 1rem;
     }
 
-    .campo:nth-child(1),
-    .campo:nth-child(4),
-    .campo:nth-child(5) {
+    .campo:nth-child(3),
+    .campo:nth-child(4) {
         grid-column: 1 / 3;
     }
 }
