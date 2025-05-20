@@ -38,10 +38,50 @@
         <h5 class="text-center mb-4 text-primary">Historial de Grabaciones</h5>
         <p class="text-center">Aquí puedes gestionar las grabaciones de los clientes.</p>
 
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const personaSelect = document.getElementById('personaSelect');
+            const camarasContainer = document.getElementById('camarasContainer');
 
-        <!-- Cuadrícula 2x2 con GIFs animados -->
-        <div class="container text-center">
-          <div class="row justify-content-center mb-4">
+            function updateCamerasVisibility(selectedPersona) {
+              // Hide all camera rows
+              const cameraRows = camarasContainer.querySelectorAll('.row');
+              cameraRows.forEach(row => {
+                row.style.display = 'none';
+              });
+
+              // Show the camera rows for the selected persona
+              const selectedCameraRows = camarasContainer.querySelectorAll('.' + selectedPersona);
+              selectedCameraRows.forEach(row => {
+                row.style.display = 'flex';
+              });
+            }
+
+            personaSelect.addEventListener('change', function () {
+              const selectedPersona = this.value;
+              updateCamerasVisibility(selectedPersona);
+            });
+
+            // Initialize the camera visibility based on the default selected value
+            updateCamerasVisibility(personaSelect.value);
+          });
+        </script>
+
+        <!-- Select para seleccionar persona -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-auto">
+            <label for="personaSelect" class="form-label text-primary">Seleccionar Persona:</label>
+            <select id="personaSelect" class="form-select">
+              <option value="persona1">Juan Perez</option>
+              <option value="persona2">Armando Ramirez</option>
+              <option value="persona3">Mayra Ayala</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Contenedor de cámaras dinámicas -->
+        <div id="camarasContainer">
+          <div class="row justify-content-center mb-4 persona1">
             <div class="col-auto">
               <h4 class="text-center mb-4 text-primary">Cámara 1</h4>
               <a href="https://drive.google.com/file/d/1WCEFyXoTUtk5IdlaEcP_BpVJRvIihs1T/view?usp=sharing"
@@ -60,15 +100,18 @@
             </div>
           </div>
 
-          <div class="row justify-content-center">
+          <div class="row justify-content-center mb-4 persona2" style="display: none;">
             <div class="col-auto">
               <h4 class="text-center mb-4 text-primary">Cámara 3</h4>
               <a href="https://drive.google.com/file/d/1FM5-lnnwbNxQxCJCqlWE7vJLfZ2w9mJY/view?usp=sharing"
                 target="_blank">
                 <img src="../../img/grabaciones/sample_3.gif" alt="Video cámara 3" width="500" height="300"
-                  class="img-fluid" style="width: 500px; height: 280px; object-fit: cover; display: block;">
+                  class="img-fluid">
               </a>
             </div>
+          </div>
+
+          <div class="row justify-content-center mb-4 persona3" style="display: none;">
             <div class="col-auto">
               <h4 class="text-center mb-4 text-primary">Cámara 4</h4>
               <a href="https://drive.google.com/file/d/TU_ID_AQUI/view?usp=sharing" target="_blank">
