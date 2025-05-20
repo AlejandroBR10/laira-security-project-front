@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Grabaciones</title>
+  <title>Gestión de Productos</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 
@@ -16,10 +17,10 @@
         <h4>Admin Panel</h4>
       </div>
       <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item"><a href="../Clientes/index.html" class="nav-link text-white">Clientes</a></li>
+        <li><a href="../Clientes/index.html" class="nav-link text-white">Clientes</a></li>
         <li><a href="../Ubicaciones/index.html" class="nav-link text-white">Ubicaciones</a></li>
-        <li><a href="../Grabaciones/index.html" class="nav-link  text-white ">Grabaciones</a></li>
-        <li><a href="../Servicios/index.html" class="nav-link active text-white bg-primary">Servicios</a></li>
+        <li><a href="../Grabaciones/index.html" class="nav-link text-white">Grabaciones</a></li>
+        <li><a href="../Servicios/index.html" class="nav-link active text-white bg-primary">Productos</a></li>
         <li><a href="../Soporte/index.html" class="nav-link text-white">Soporte</a></li>
         <li><a href="../GestionPagos/index.html" class="nav-link text-white">Gestión de Pagos</a></li>
       </ul>
@@ -30,14 +31,145 @@
 
     <!-- Contenido principal -->
     <div class="flex-grow-1 p-4">
-      <h2 class="text-center mb-4 text-primary">Servicios</h2>
-      <div class="p-4 bg-white rounded shadow-sm">
-        <h5 class="text-center mb-4 text-primary">Gestion de Servicios</h5>
-        <p class="text-center">Aquí puedes gestionar todos los serviciones.</p>
+      <h2 class="text-center mb-4 text-primary">Gestión de Productos</h2>
+
+      <!-- Buscador y botón Agregar Producto -->
+      <div class="row mb-4 align-items-end">
+        <div class="col-md-3">
+          <label for="productId" class="form-label text-primary fw-bold">ID Producto</label>
+          <input type="text" id="productId" class="form-control border-primary" placeholder="Ej. P001">
+        </div>
+        <div class="col-md-3">
+          <label for="productName" class="form-label text-primary fw-bold">Nombre</label>
+          <input type="text" id="productName" class="form-control border-primary" placeholder="Ej. Coca-Cola">
+        </div>
+        <div class="col-md-3">
+          <label for="productPrice" class="form-label text-primary fw-bold">Precio</label>
+          <input type="number" id="productPrice" class="form-control border-primary" placeholder="Ej. 1500">
+        </div>
+        <div class="col-md-3 d-flex justify-content-between">
+          <button class="btn btn-outline-primary w-50 me-2 d-flex align-items-center justify-content-center">
+            <i class="bi bi-search me-2"></i> Buscar
+          </button>
+          <button class="btn btn-success w-50 d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#addProductModal">
+            <i class="bi bi-plus-circle-fill me-2"></i> Agregar
+          </button>
+        </div>
       </div>
+
+      <!-- Modal para agregar producto -->
+      <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+              <h5 class="modal-title" id="addProductModalLabel">Agregar Producto</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <form id="addProductForm">
+                <div class="mb-3">
+                  <label for="newProductName" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="newProductName" placeholder="Nombre del producto" required>
+                </div>
+                <div class="mb-3">
+                  <label for="newProductPrice" class="form-label">Precio</label>
+                  <input type="number" class="form-control" id="newProductPrice" placeholder="Precio" required>
+                </div>
+                <div class="mb-3">
+                  <label for="newProductStock" class="form-label">Stock</label>
+                  <input type="number" class="form-control" id="newProductStock" placeholder="Cantidad en stock" required>
+                </div>
+                <button type="submit" id="botonAgregarProducto" class="btn btn-success w-100">Guardar Producto</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para editar producto -->
+      <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <form id="editProductForm">
+                <input type="hidden" id="editProductId">
+                <div class="mb-3">
+                  <label for="editProductName" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="editProductName" placeholder="Nombre del producto" required>
+                </div>
+                <div class="mb-3">
+                  <label for="editProductPrice" class="form-label">Precio</label>
+                  <input type="number" class="form-control" id="editProductPrice" placeholder="Precio" required>
+                </div>
+                <div class="mb-3">
+                  <label for="editProductStock" class="form-label">Stock</label>
+                  <input type="number" class="form-control" id="editProductStock" placeholder="Cantidad en stock" required>
+                </div>
+                <button type="submit" id="botonActualizarProducto" class="btn btn-primary w-100">Guardar Cambios</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para confirmar eliminación -->
+      <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+              <h5 class="modal-title" id="deleteProductModalLabel">Confirmar Eliminación</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <p>¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer.</p>
+              <input type="hidden" id="deleteProductId">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" id="botonEliminarProducto" class="btn btn-danger">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Base de datos de productos -->
+      <div class="p-4 bg-white rounded shadow-sm">
+        <h5 class="text-center mb-4 text-primary">Base de Datos de Productos</h5>
+        <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+          <table class="table table-bordered table-hover">
+          <thead class="table-primary sticky-top">
+            <tr>
+              <th>#</th>
+              <th>ID Producto</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaProductos">
+            <!-- Aquí van los productos dinámicamente -->
+          </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="mt-5 text-center">
+        <p class="mb-0 text-muted">Todos los derechos reservados S.A DE C.V</p>
+        <small class="text-muted">Made with ❤️ by Equipo 1</small>
+      </footer>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="index.js" defer></script>
+  <script type="module" src="update.js" defer></script>
+  <script type="module" src="delete.js"></script>
+  <script type="module" src="add.js"></script>
 </body>
 </html>
