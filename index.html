@@ -16,7 +16,7 @@
             background-size: cover;
             color: rgb(0, 0, 0);
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px 90px 20px;
         }
         .card-icon {
             font-size: 40px;
@@ -28,40 +28,45 @@
             text-align: center;
             font-size: 14px;
         }
-        .shadow-navbar {
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.25);
-        }
-        .navbar-container {
-            width: 80%;
-        }
-        .nav-link.nav-underline {
-            position: relative;
-            padding-bottom: 4px;
-        }
-        .nav-link.nav-underline::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0%;
-            height: 2px;
-            background-color: transparent;
-            box-shadow: none;
-            transition: width 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;  
-        }
-        .nav-link.nav-underline:hover::after,
-        .nav-link.nav-underline.active::after {
-            width: 100%;
-            background-color: #007bff;
-            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
-            border-radius: 2px;
+    .shadow-navbar {
+        box-shadow: 0 4px 10px rgba(0, 123, 255, 0.25);
+    }
+    .navbar-container {
+        width: 80%;
+    }
+    .nav-link.nav-underline {
+        position: relative;
+        padding-bottom: 4px;
+    }
+    .nav-link.nav-underline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0%;
+        height: 2px;
+        background-color: transparent;
+        box-shadow: none;
+        transition: width 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;  
+    }
+    .nav-link.nav-underline:hover::after,
+    .nav-link.nav-underline.active::after {
+        width: 100%;
+        background-color: #007bff;
+        box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+        border-radius: 2px;
+    }
+        .navbar{
+            position:sticky;
+            top:0;
+            z-index: 1000;
         }
     </style>
 </head>
 <body class="bg-gradient">
-<!-- Barra de navegación -->
+<!-- Barra de navegación igual que en productos -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-navbar">
-    <div class="container navbar-container">
+    <div class="navbar-container d-flex align-items-center justify-content-between mx-auto">
         <!-- Logo alineado a la izquierda -->
         <a class="navbar-brand" href="index.html">
             <img src="img/logo.png" height="25" alt="">

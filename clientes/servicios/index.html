@@ -10,56 +10,94 @@
     <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/style.css">
     <title>Servicios</title>
+    <style>
+
+     body {
+            background: linear-gradient(to bottom, #ffffff, #d0e7ff);
+            background-attachment: fixed;
+        }
+        .comment-box {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .shadow-navbar {
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.25);
+        }
+        .navbar-container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .nav-link.nav-underline {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-link.nav-underline::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 2px;
+            background-color: transparent;
+            box-shadow: none;
+            transition: width 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;  
+        }
+        .nav-link.nav-underline:hover::after,
+        .nav-link.nav-underline.active::after {
+            width: 100%;
+            background-color: #007bff;
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+            border-radius: 2px;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Header / Navbar -->
-    <div class="bg-white border-bottom py-2 px-3 d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center gap-3">
-            <img src="../../img/logo.png" alt="LAIRA Security Logo" width="40" height="40">
-            <span class="text-muted small">Nuevas contrataciones <strong>800 5526 238</strong></span>
-            <div class="vr mx-2"></div>
-            <span class="text-muted small">Atención al cliente <strong>800 2025 238</strong></span>
-        </div>
-        <div class="dropdown"></div>
-            <a class="text-decoration-none text-primary dropdown-toggle small" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-circle"></i> Clientes LAIRA
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
-                <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+<!-- Barra de navegación igual que en productos -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-navbar">
+    <div class="navbar-container d-flex align-items-center justify-content-between mx-auto">
+        <!-- Logo alineado a la izquierda -->
+        <a class="navbar-brand" href="../../index.html">
+            <img src="../../img/logo.png" height="25" alt="">
+        </a>
+        <!-- Botón responsive -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Menú alineado a la derecha -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../../index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../productos/index.html">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline active" href="../servicios/index.html">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../contacto/index.html">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../comentarios/index.html">Comentarios</a>
+                </li>
+                <!-- Dropdown de usuario -->
+                <li class="nav-item dropdown ms-3">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../../img/user.png" alt="Usuario" width="32" height="32" class="rounded-circle me-2">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
-
-    <!-- Menú principal -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLAIRA" aria-controls="navbarLAIRA" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarLAIRA">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../productos/index.html">Productos</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="index.html">Servicios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../contacto/index.html">Contacto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../comentarios/index.html">Comentarios</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+</nav>
 
     <div class="presentacion contenedor">
         <div class="img-camaras">
