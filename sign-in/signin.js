@@ -19,6 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
        userPassword: formData.get("password")
       };
 
+      const confirmPassword = formData.get("confirmPassword");
+         if (authData.userPassword !== confirmPassword) {
+      alert("Las contraseñas no coinciden. Por favor, ingrésalas nuevamente.");
+      // Limpiar los campos de contraseña
+      loginForm.querySelector('[name="password"]').value = "";
+      loginForm.querySelector('[name="confirmPassword"]').value = "";
+      loginForm.querySelector('[name="password"]').focus();
+      return;
+    }
+
     console.log(authData); 
 
     try {

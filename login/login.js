@@ -1,7 +1,10 @@
 import { API_URL } from "/constants/constants";
+import { ROLES } from "/constants/constants";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.querySelector("form");
+    const adminCheckbox = document.querySelector("#adminCheck"); // Referencia al checkbox
+
 
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -10,7 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let authData = {
       userEmail: formData.get("email"),
       userPassword: formData.get("password"),
+
     };
+
+    if(adminCheckbox.checked == true){
+      obtenerRol();
+      return;
+    }
 
     console.log(authData); 
 
@@ -36,3 +45,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+async function obtenerRol(){
+  let data = []
+try {
+      const response = await fetch(`${API_URL}/auth/token`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include"
+      });
+
+      
+      if (response.status === 200) {
+        data = await response.json();
+        if(data.user.userRoles.includes("Admin")){
+          alert("Bienvenido al Panel de Administrador!");
+          window.location.href = "/admins/Clientes/index.html";
+        }
+        
+     
+      } else {
+        alert("Me parece que no eres administrador, ingresa como cliente o registrate");
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      alert("Error de red. Intenta más tarde.");
+    }
+}

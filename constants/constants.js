@@ -5,4 +5,10 @@ export const STATUS = {
   COMPLETED: "Completed",
   FAILED: "Failed"
 };
+
+export const ROLES = {
+  ADMIN : "Admin",
+  MANGER : "Manager",
+  CUSTOMER : "Customer"
+}
     

@@ -10,7 +10,7 @@
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%; border-radius: 10px;">
             <div class="text-center mb-4">
-                <img src="ruta/a/logo.png" alt="LAIRA Security" class="mb-3" style="width: 80px;">
+                <img src="/img/logo.png" alt="LAIRA Security" class="mb-3" style="width: 80px;">
                 <h2 class="text-primary">Inicia Sesión</h2>
             </div>
             <form>
@@ -21,6 +21,12 @@
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
                     <input type="password" class="form-control" name="password" placeholder="Ingresa tu contraseña" required>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="adminCheck" name="adminCheck">
+                    <label class="form-check-label" for="adminCheck">
+                        Ingresar como administrador
+                    </label>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
             </form>
