@@ -1,4 +1,4 @@
-import { STATUS } from "../../constants/constants";
+import { STATUS } from "/constants/constants.js";
 import { API_URL } from "/constants/constants.js";
 
 // Asegúrate de tener jsPDF en tu HTML:
@@ -123,28 +123,104 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Exponer la función para el botón de factura
-  window.generarFactura = function(paymentId) {
+  window.generarFactura = async function(paymentId) {
     const pago = pagos.find(p => p.paymentId === paymentId);
     if (!pago) return alert("Pago no encontrado");
 
-  
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    doc.setFontSize(18);
-    //doc.text("Factura Electrónica", 70, 20);
-    doc.text("LAIRA-SECURITY", 70, 20);
-    doc.setFontSize(12);
-    doc.text(`Folio: ${pago.paymentId}`, 14, 35);
-    doc.text(`Cliente: ${pago.customer.customerName} ${pago.customer.customerLastName}`, 14, 45);
-    doc.text(`Correo: ${pago.customer.customerEmail}`, 14, 52);
-    doc.text(`Fecha: ${pago.createdAt ? new Date(pago.createdAt).toLocaleDateString() : "-"}`, 14, 59);
-    doc.text(`Descripción: ${pago.description || "-"}`, 14, 66);
-    doc.text(`Monto: $${Number(pago.amount).toLocaleString('es-MX', {minimumFractionDigits:2})}`, 14, 73);
-    doc.text(`Estado: ${pago.status}`, 14, 80);
+    // Paleta formal y minimalista
+    const azul = "#1A2238";
+    const celeste = "#9DAAF2";
+    const grisClaro = "#F4F6FB";
+    const grisOscuro = "#22223B";
+    const grisMedio = "#6c757d";
 
+    // --- Encabezado formal ---
+    doc.setFillColor(26, 34, 56); // azul
+    doc.rect(0, 0, 210, 38, "F");
+    doc.setFontSize(24);
+    doc.setTextColor(255, 255, 255);
+    doc.text("LAIRA SECURITY", 14, 18); // Título empresa
+    doc.setFontSize(13);
+    doc.setTextColor(157, 170, 242);
+    doc.text("Factura Electrónica", 14, 30);
     doc.setFontSize(10);
-    doc.text("Este documento es una simulación de factura electrónica.", 14, 100);
+    doc.setTextColor(200, 210, 255);
+    doc.text(`Emitida: ${new Date().toLocaleDateString()}`, 200, 16, { align: "right" });
+
+    // --- Datos del Cliente (más espacio y alineación) ---
+    doc.setFillColor(244, 246, 251); // grisClaro
+    doc.roundedRect(10, 44, 190, 34, 3, 3, "F");
+    doc.setFontSize(12);
+    doc.setTextColor(azul);
+    doc.text("Datos del Cliente", 14, 54);
+
+    doc.setFontSize(11);
+    doc.setTextColor(grisOscuro);
+    doc.text("Nombre:", 14, 62);
+    doc.setTextColor(azul);
+    doc.text(`${pago.customer.customerName} ${pago.customer.customerLastName}`, 38, 62);
+
+    doc.setTextColor(grisOscuro);
+    doc.text("Correo:", 14, 69);
+    doc.setTextColor(azul);
+    doc.text(`${pago.customer.customerEmail}`, 38, 69);
+
+    doc.setTextColor(grisOscuro);
+    doc.text("Folio:", 14, 76);
+    doc.setTextColor(azul);
+    doc.text(`${pago.paymentId}`, 38, 76);
+
+    // --- Detalle del Pago (más espacio y separación) ---
+    doc.setFillColor(244, 246, 251);
+    doc.roundedRect(10, 84, 190, 36, 3, 3, "F");
+    doc.setFontSize(12);
+    doc.setTextColor(azul);
+    doc.text("Detalle del Pago", 14, 94);
+
+    doc.setFontSize(11);
+    doc.setTextColor(grisOscuro);
+    doc.text("Fecha:", 14, 102);
+    doc.setTextColor(azul);
+    doc.text(`${pago.createdAt ? new Date(pago.createdAt).toLocaleDateString() : "-"}`, 38, 102);
+
+    doc.setTextColor(grisOscuro);
+    doc.text("Descripción:", 14, 109);
+    doc.setTextColor(azul);
+    doc.text(`${pago.description || "-"}`, 38, 109);
+
+    // --- Monto y Estado (alineados y con espacio) ---
+    doc.setFontSize(12);
+    doc.setTextColor(grisOscuro);
+    doc.text("Monto:", 14, 122);
+    doc.setFontSize(16);
+    doc.setTextColor(azul);
+    doc.text(`${pago.amount ? `$${Number(pago.amount).toLocaleString('es-MX', {minimumFractionDigits:2})}` : "-"}`, 38, 122);
+
+    doc.setFontSize(13);
+    doc.setTextColor(grisOscuro);
+    let estadoTxt = pago.status;
+    if (pago.status === STATUS.COMPLETED) {
+      estadoTxt = "Pagado";
+    } else if (pago.status === STATUS.PENDING) {
+      estadoTxt = "Pendiente";
+    } else if (pago.status === STATUS.FAILED) {
+      estadoTxt = "Fallido";
+    }
+    doc.text("Estado:", 120, 122);
+    doc.setFontSize(13);
+    doc.setTextColor(azul);
+    doc.text(estadoTxt, 140, 122);
+
+    // --- Pie de página formal ---
+    doc.setDrawColor(157, 170, 242);
+    doc.setLineWidth(0.5);
+    doc.line(10, 145, 200, 145);
+    doc.setFontSize(9);
+    doc.setTextColor(157, 170, 242);
+    doc.text("Este documento es una simulación de factura electrónica. LAIRA SECURITY © 2025", 105, 152, { align: "center" });
 
     // Abrir el PDF en una nueva ventana
     window.open(doc.output("bloburl"), "_blank");
