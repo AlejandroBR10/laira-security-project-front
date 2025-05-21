@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "nombre": "Cámara tipo ojo de pez H6A",
+        "precio": 3999.99,
+        "descripcion": "La cámara ojo de pez H6A proporciona vistas de 180° y 360°, y registra los eventos de seguridad de principio a fin sin puntos ciegos.",
+        "imagenes": [
+            "./ImgProductos/Negocio/Negocio1.avif"
+        ]
+    },
+    {
+        "id": 2,
+        "nombre": "Cámara H5A Fisheye",
+        "precio": 4999.99,
+        "descripcion": "La cámara de seguridad Fisheye H5A para interior y exterior brinda un conocimiento de la situación superior con sus vistas de todos los ángulos.",
+        "imagenes": [
+            "./ImgProductos/Negocio/Negocio2.avif"
+        ]
+    },
+    {
+        "id": 3,
+        "nombre": "C302 3MP WiFi-6 Security System + 12.5 inch LCD Monitor + Up To 8TB",
+        "precio": 5999.99,
+        "descripcion": "Protege tu negocio con imágenes nítidas en 3MP Super HD, superiores a 1080p. visión nocturna, audio bidireccional, detección de movimiento y almacenamiento de hasta 8TB. Control desde la app Zosi Smart.",
+        "imagenes": [
+            "./ImgProductos/Negocio/Negocio3.webp"
+        ]
+    },
+    {
+        "id": 4,
+        "nombre": "C429 2pack/4pack 5MP Add-on PoE Camera + 60ft Ethernet Cable",
+        "precio": 6999.99,
+        "descripcion": "Cámaras 5MP HD con visión nocturna (hasta 30m), conexión PoE (un solo cable), resistentes al clima y alertas de movimiento en tiempo real. Solo compatibles con NVR ZOSI específicos.",
+        "imagenes": [
+            "./ImgProductos/Negocio/Negocio5.webp"
+        ]
+    },
+    {
+        "id": 5,
+        "nombre": "C225 5MP PoE Camera System + 4K 16CH PoE NVR + 4TB Hard Drive",
+        "precio": 8999.99,
+        "descripcion": "Protección avanzada con cámaras 5MP y visión nocturna de 120ft, detección inteligente de personas/vehículos, NVR 4K expandible a 32 canales y grabación personalizada (24/7, programada, detección o reciclaje).",
+        "imagenes": [
+            "./ImgProductos/Negocio/Negocio4.webp"
+        ]
+    }
+]

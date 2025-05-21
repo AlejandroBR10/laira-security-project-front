@@ -7,28 +7,41 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body, html {
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+
+        nav.navbar {
+            margin: 0; 
+            padding: 0; 
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.25); 
         }
-        h1, h2 {
+
+        h2 {
             text-align: center;
             margin-bottom: 40px;
+            color: #005DAA;
+            font-size: 2.5rem; 
+            font-weight: bold; 
         }
+
+        .producto-container {
+            margin-top: 60px; 
+            margin-bottom: 40px; 
+        }
+
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(5, minmax(300px, 1fr)); /* Más ancho si lo deseas */
-            gap: 24px;
-            margin-bottom: 60px;
-            justify-content: center; /* Centra los productos */
+            grid-template-columns: repeat(5, minmax(280px, 1fr)); 
+            gap: 20px;
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+            justify-content: center; 
         }
+
         .product-card {
             background: #fff;
             border: 1px solid #ddd;
@@ -36,40 +49,92 @@
             padding: 20px;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            min-height: 420px; /* Ajusta según necesidad */
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex; /* Activa Flexbox */
+            flex-direction: column; /* Organiza el contenido en columna */
+            justify-content: space-between; /* Distribuye el contenido */
+            height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
         }
+
+        .product-card:hover {
+            transform: scale(1.05); 
+            box-shadow: 0 4px 12px rgba(0, 93, 170, 0.3);
+            border-color: #005DAA; 
+        }
+
         .product-card img {
             max-width: 100%;
-            height: auto;
-            border-radius: 8px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 15px;
         }
+
         .product-card h3 {
-            font-size: 18px;
-            margin: 15px 0 10px 0;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #005DAA;
         }
+
         .product-card p {
-            font-size: 14px;
+            font-size: 0.9rem;
             color: #666;
-            flex: 1 1 auto;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        .product-card button {
-            background-color: #005DAA;
+
+        .product-card .precio {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0091ea;
+            margin-bottom: 15px;
+        }
+
+        .product-card .btn-comprar {
+            margin-top: auto; 
+            background: #005DAA;
             color: #fff;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-top: auto;
-            align-self: center;
+            border-radius: 25px;
+            padding: 10px 16px; 
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s ease;
         }
-        .product-card button:hover {
-            background-color: #005eaac2;
+
+        .product-card .btn-comprar:hover {
+            background: #004a8a;
+        }
+
+        .btn-comprar {
+            background: #005DAA;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn-comprar:hover {
+            background: #004a8a;
+        }
+
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(3, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(280px, 1fr)); 
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr; 
+            }
         }
     </style>
 </head>
@@ -162,121 +227,23 @@
     }
 </style>
 
+<!-- Contenedor de productos -->
+<div class="producto-container" id="hogar-container">
+    <h2 class="text-center">Hogar</h2>
+    <div class="product-grid" id="hogar-grid"></div>
+</div>
 
+<div class="producto-container" id="empresas-container">
+    <h2 class="text-center">Empresas</h2>
+    <div class="product-grid" id="empresas-grid"></div>
+</div>
 
+<div class="producto-container" id="negocio-container">
+    <h2 class="text-center">Negocio</h2>
+    <div class="product-grid" id="negocio-grid"></div>
+</div>
 
-
-
-
-    <div class="container">
-        <!-- Hogar -->
-        <h1>Hogar</h1>
-        <div class="product-grid" id="hogar-grid">
-            <div class="product-card">
-                <img src="./ImgProductos/Hogar/Hogar1.webp" alt="Producto 1">
-                <h3>Mini Cámara IP 1 Megapíxel, wifi, con Detección de Movimiento</h3>
-                <p>Eficiente diseñado para brindarte tranquilidad en todo momento. Gracias a su conectividad Wi-Fi y funciones avanzadas, podrás monitorear tu espacio desde cualquier lugar.</p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Hogar/Hogar2.webp" alt="Producto 2">
-                <h3>Mini PT IP 2 Megapixel, Audio de Dos Vías, Memoria Micro SD</h3>
-                <p>Una solución compacta y versátil para tu seguridad. Con su función de movimiento PTZ (pan, tilt, zoom) y audio de dos vías, puedes comunicarte fácilmente y monitorear en tiempo real. Almacena tus grabaciones directamente en una tarjeta Micro SD para mayor seguridad.</p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Hogar/Hogar3.webp" alt="Producto 3">
-                <h3>Bala IP 2 Megapíxel, wifi, Micrófono integrado</h3>
-                <p>Protección confiable para exteriores e interiores. Su diseño tipo bala ofrece una visión clara en alta definición, mientras que el micrófono integrado permite capturar audio ambiente. Con conectividad Wi-Fi, puedes monitorear en tiempo real desde tu dispositivo móvil.</p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Hogar/Hogar4.webp" alt="Producto 4">
-                <h3>Cámara IP wifi, Con Batería Recargable</h3>
-                <p>Máxima flexibilidad para la seguridad de tu espacio. Esta cámara IP inalámbrica funciona sin cables gracias a su batería recargable, ideal para áreas sin acceso directo a corriente. Compatible con control remoto vía aplicación móvil. </p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Hogar/HogarKitCompleto.jpg" alt="Producto 5">
-                <h3>Home-Kit, Sistema de seguridad para el hogar</h3>
-                <p>Sistema de alarma de puerta WIFI Ys pg107 Tuya Security System System Kit SmartLife App Control con la cámara IP Detector de movimiento de marcación automática WIFI GSM Home Smart Alarm Para Hogares</p>
-                <button>Ver más</button>
-            </div>
-        </div>
-
-        <!-- Empresas -->
-        <h2>Empresas</h2>
-        <div class="product-grid" id="empresas-grid">
-            <div class="product-card">
-                <img src="./ImgProductos/Empresa/Empresa1.avif" alt="Empresa 1">
-                <h3>Cámara H6A PTZ</h3>
-                <p>La cámara H6A PTZ puede registrar objetos en rápido movimiento y detectar incidentes de seguridad mediante videos analíticos con tecnología de IA.</p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Empresa/Empresa2.avif" alt="Empresa 2">
-                <h3>Cámara H5A-PTZ</h3>
-                <p>Monitoree zonas grandes con facilidad con la cámara PTZ H5A. Combina vistas de 360 grados, zoom de hasta 36x y videos analíticos con tecnología de IA para que nunca se pierda ni un momento.</p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Empresa/Empresa3.avif" alt="Empresa 3">
-                <h3>Cámara H5A IR PTZ</h3>
-                <p>Con la capacidad de ver más en la oscuridad, la cámara H5A IR PTZ ofrece un rango de iluminación IR automatizado de hasta 300 metros y la capacidad de ver 20 grados por encima del horizonte</p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Empresa/Empresa4.avif" alt="Empresa 4">
-                <h3>Cámara H5A Multisensor</h3>
-                <p>Esté cubierto desde todos los ángulos con la cámara H5A Multisensor que puede ofrecer vistas de 180, 270 ó 360 grados.</p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Empresa/Empresa5.png" alt="Empresa 5">
-                <h3>Controlador, SPC-7000</h3>
-                <p>Optimiza el control y monitoreo de tu sistema de seguridad con nuestro avanzado controlador de cámaras. Ideal para la gestión de cámaras de red, cámaras analógicas, sistemas SSM y DVR.</p>
-                <button>Ver más</button>
-            </div>
-        </div>
-
-        <!-- Negocio -->
-        <h2>Negocio</h2>
-        <div class="product-grid" id="negocio-grid">
-            <div class="product-card">
-                <img src="./ImgProductos/Negocio/Negocio1.avif" alt="Negocio 1">
-                <h3>Cámara tipo ojo de pez H6A</h3>
-                <p>La cámara ojo de pez H6A proporciona vistas de 180° y 360°, y registra los eventos de seguridad de principio a fin sin puntos ciegos.</p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Negocio/Negocio2.avif" alt="Negocio 2">
-                <h3>Cámara H5A Fisheye</h3>
-                <p>La cámara de seguridad Fisheye H5A para interior y exterior brinda un conocimiento de la situación superior con sus vistas de todos los ángulos.</p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Negocio/Negocio3.webp" alt="Negocio 3">
-                <h3>C302 3MP WiFi-6 Security System + 12.5 inch LCD Monitor + Up To 8TB</h3>
-                <p>Protege tu negocio con imágenes nítidas en 3MP Super HD, superiores a 1080p. visión nocturna, audio bidireccional, detección de movimiento y almacenamiento de hasta 8TB. Control desde la app Zosi Smart.</p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Negocio/Negocio5.webp" alt="Negocio 4">
-                <h3>C429 2pack/4pack 5MP Add-on PoE Camera + 60ft Ethernet Cable</h3>
-                <p>Cámaras 5MP HD con visión nocturna (hasta 30m), conexión PoE (un solo cable), resistentes al clima y alertas de movimiento en tiempo real. Solo compatibles con NVR ZOSI específicos.</p>
-                <button>Ver más</button>
-            </div>
-            <div class="product-card">
-                <img src="./ImgProductos/Negocio/Negocio4.webp" alt="Negocio 5">
-                <h3>C225 5MP PoE Camera System + 4K 16CH PoE NVR + 4TB Hard Drive</h3>
-                <p>Protección avanzada con cámaras 5MP y visión nocturna de 120ft, detección inteligente de personas/vehículos, NVR 4K expandible a 32 canales y grabación personalizada (24/7, programada, detección o reciclaje)</p>
-                <button>Ver más</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./productos.js"></script>
+<script src="./productos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
