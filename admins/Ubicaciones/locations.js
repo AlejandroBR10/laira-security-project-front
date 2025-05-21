@@ -28,7 +28,7 @@ fetch(`${API_URL}/locations`, {
       // Crear opciones para el selector
       const option = document.createElement('option');
       option.value = location.locationId; // Este es el valor interno
-      option.textContent = `${location.locationId} - ${location.locationName}`; // Mostrar locationId y locationName
+      option.textContent = `${location.locationName}`; // Mostrar locationId y locationName
       select.appendChild(option);
 
       // Convertir las coordenadas a números

@@ -8,7 +8,7 @@ export const STATUS = {
 
 export const ROLES = {
   ADMIN : "Admin",
-  MANGER : "Manager",
+  MANAGER : "Manager",
   CUSTOMER : "Customer"
 }
     

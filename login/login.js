@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.querySelector("form");
     const adminCheckbox = document.querySelector("#adminCheck"); // Referencia al checkbox
 
-
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -16,14 +15,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     };
 
-    if(adminCheckbox.checked == true){
-      obtenerRol();
-      return;
+   login(authData,adminCheckbox);
+
+  });
+});
+
+
+async function obtenerRol() {
+  try {
+    const response = await fetch(`${API_URL}/auth/token`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", // importante para enviar cookie HttpOnly
+    });
+
+    if (response.status == 200) {
+      const data = await response.json();
+      //console.log('Datos usuario:', data);
+
+      // data.user.userRoles debe ser un array con roles
+      if (data.user.userRoles.includes("Admin")) {
+        alert("Bienvenido al Panel de Administrador!");
+        window.location.href = "/admins/Clientes/index.html";
+      } else {
+        alert("No eres administrador, no tienes acceso a esta página.");
+        window.location.href = "/login/login.html"; // o la página que quieras
+      }
+    } else {
+      alert("No estás autorizado. Por favor, inicia sesión.");
+      //  window.location.href = "/login.html";
     }
+  } catch (error) {
+    console.error("Error al validar sesión:", error);
+    alert("Error de red. Intenta más tarde.");
+  }
+}
 
-    console.log(authData); 
-
-    try {
+async function login(authData,botonValidar){
+  try {
       const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: {
@@ -34,8 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.status === 201) {
-        
-        window.location.href = "/dashboard.html";
+        if(botonValidar.checked == true){
+      obtenerRol();
+      return;
+    }
+        window.location.href = "/index.html";
       } else {
         alert("Credenciales incorrectas o error en el servidor.");
       }
@@ -43,35 +77,4 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error al iniciar sesión:", error);
       alert("Error de red. Intenta más tarde.");
     }
-  });
-});
-
-
-async function obtenerRol(){
-  let data = []
-try {
-      const response = await fetch(`${API_URL}/auth/token`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include"
-      });
-
-      
-      if (response.status === 200) {
-        data = await response.json();
-        if(data.user.userRoles.includes("Admin")){
-          alert("Bienvenido al Panel de Administrador!");
-          window.location.href = "/admins/Clientes/index.html";
-        }
-        
-     
-      } else {
-        alert("Me parece que no eres administrador, ingresa como cliente o registrate");
-      }
-    } catch (error) {
-      console.error("Error al iniciar sesión:", error);
-      alert("Error de red. Intenta más tarde.");
-    }
-}
+  }
