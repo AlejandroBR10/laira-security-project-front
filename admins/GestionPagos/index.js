@@ -1,6 +1,6 @@
 import { STATUS } from "/constants/constants.js";
 import { API_URL } from "/constants/constants.js";
-
+import { agregarPagoDesdeModal } from "./add.js";
 // Asegúrate de tener jsPDF en tu HTML:
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const resumenCliente = document.getElementById("resumenCliente");
   const selectorClientes = document.getElementById("selectorClientes");
   const formAgregarPago = document.getElementById("formAgregarPago");
-  const inputCustomerIdAgregar = formAgregarPago?.querySelector('[name="customerId"]');
+  const inputCustomerIdAgregar = formAgregarPago.querySelector('[name="customerId"]');
 
   // 1. Obtener clientes y llenar el selector
   try {
@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Evento para mostrar pagos al seleccionar desde el selector
         selectorClientes.addEventListener("change", () => {
           const clienteId = selectorClientes.value;
+          console.log(clienteId);
           mostrarResumenCliente(clienteId);
           mostrarPagos(clienteId);
           if (inputCustomerIdAgregar) inputCustomerIdAgregar.value = clienteId;
@@ -97,11 +98,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           </td>
         </tr>
       `;
+      // Deshabilita el botón de editar pago si no hay pagos
+      document.getElementById("btnEditarPago")?.setAttribute("disabled", "disabled");
       return;
     }
 
     tablaPagos.innerHTML = pagosFiltrados.map((pago, idx) => `
-      <tr>
+      <tr class="fila-pago" data-payment-id="${pago.paymentId}">
         <td>${idx + 1}</td>
         <td>
           <div class="fw-bold">${pago.customer ? pago.customer.customerName + " " + pago.customer.customerLastName : "-"}</div>
@@ -123,6 +126,45 @@ document.addEventListener("DOMContentLoaded", async () => {
         </td>
       </tr>
     `).join("");
+
+    // Evento para seleccionar fila y activar botón de editar pago
+    document.querySelectorAll(".fila-pago").forEach(row => {
+      row.addEventListener("click", function () {
+        // Remueve selección previa
+        document.querySelectorAll(".fila-pago").forEach(r => r.classList.remove("table-active"));
+        this.classList.add("table-active");
+
+        const paymentId = this.getAttribute("data-payment-id");
+        console.log(paymentId);
+        // Habilita el botón de editar pago
+        const btnEditar = document.getElementById("btnEditarPago");
+        if (btnEditar) {
+          btnEditar.removeAttribute("disabled");
+          btnEditar.onclick = () => {
+            // Carga los datos del pago en el modal de editar
+            cargarDatosPagoEnModal(paymentId);
+            // Muestra el modal de editar pago
+            const modalEditar = window.bootstrap?.Modal.getOrCreateInstance(document.getElementById("modalEditarPago"));
+            modalEditar?.show();
+          };
+        }
+      });
+    });
+
+    // Deshabilita el botón de editar pago si no hay selección
+    document.getElementById("btnEditarPago")?.setAttribute("disabled", "disabled");
+  }
+
+  // Función para cargar los datos del pago seleccionado en el modal de editar
+  function cargarDatosPagoEnModal(paymentId) {
+    const pago = pagos.find(p => p.paymentId === paymentId);
+    if (!pago) return;
+    const formEditar = document.getElementById("formEditarPago");
+    if (!formEditar) return;
+    formEditar.querySelector('[name="paymentId"]').value = pago.paymentId;
+    formEditar.querySelector('[name="amount"]').value = pago.amount;
+    formEditar.querySelector('[name="description"]').value = pago.description || "";
+    formEditar.querySelector('[name="status"]').value = pago.status;
   }
 
   // Exponer la función para el botón de factura
@@ -244,4 +286,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
+
+
+
 
