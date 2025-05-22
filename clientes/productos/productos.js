@@ -28,7 +28,7 @@ applyHoverEffect('#negocio-grid .product-card');
 
 
 
-// Función para cargar y renderizar productos desde un archivo JSON
+// cargar JSON
 function cargarProductos(rutaJson, contenedorId, categoria) {
     fetch(rutaJson)
         .then(response => response.json())
@@ -38,7 +38,7 @@ function cargarProductos(rutaJson, contenedorId, categoria) {
                 const card = document.createElement('div');
                 card.classList.add('product-card');
                 card.innerHTML = `
-                    <img src="${producto.imagenes[0]}" alt="${producto.nombre}">
+                    <img src="ImgProductos/${producto.imagenes[0]}" alt="${producto.nombre}">
                     <h3>${producto.nombre}</h3>
                     <p>${producto.descripcion}</p>
                     <div class="precio">$${producto.precio.toFixed(2)}</div>
@@ -53,9 +53,9 @@ cargarProductos('./hogar.json', 'hogar-grid', 'hogar');
 cargarProductos('./empresas.json', 'empresas-grid', 'empresas');
 cargarProductos('./negocio.json', 'negocio-grid', 'negocio');
 
-// Función para manejar el clic en "Ver Producto"
+// "Ver Producto"
 function verProducto(id, categoria) {
-    // Redirige a producto.html con el ID del producto como parámetro en la URL
+    
     window.location.href = `./ImgProductos/producto.html?id=${id}&categoria=${categoria}`;
 }
 

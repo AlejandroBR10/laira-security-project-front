@@ -5,10 +5,10 @@
         "precio": 4999.99,
         "descripcion": "La cámara H6A PTZ puede registrar objetos en rápido movimiento y detectar incidentes de seguridad mediante videos analíticos con tecnología de IA.",
         "imagenes": [
-            "./ImgProductos/Empresa/Empresa1.avif",
-            "./ImgProductos/Empresa/Empresa1Miniatura1.avif",
-            "./ImgProductos/Empresa/Empresa1Miniatura2.avif",
-            "./ImgProductos/Empresa/Empresa1Miniatura3.avif"
+            "Empresa/Empresa1.avif",
+            "Empresa/Empresa1Miniatura1.avif",
+            "Empresa/Empresa1Miniatura2.avif",
+            "Empresa/Empresa1Miniatura3.avif"
         ]
     },
     {
@@ -17,10 +17,10 @@
         "precio": 5999.99,
         "descripcion": "Monitoree zonas grandes con facilidad con la cámara PTZ H5A. Combina vistas de 360 grados, zoom de hasta 36x y videos analíticos con tecnología de IA para que nunca se pierda ni un momento.",
         "imagenes": [
-            "./ImgProductos/Empresa/Empresa2.avif",
-            "./ImgProductos/Empresa/Empresa2Miniatura1.avif",
-            "./ImgProductos/Empresa/Empresa2Miniatura2.avif",
-            "./ImgProductos/Empresa/Empresa2Miniatura3.avif"
+            "Empresa/Empresa2.avif",
+            "Empresa/Empresa2Miniatura1.avif",
+            "Empresa/Empresa2Miniatura2.avif",
+            "Empresa/Empresa2Miniatura3.avif"
         ]
     },
     {
@@ -29,10 +29,10 @@
         "precio": 6999.99,
         "descripcion": "Con la capacidad de ver más en la oscuridad, la cámara H5A IR PTZ ofrece un rango de iluminación IR automatizado de hasta 300 metros y la capacidad de ver 20 grados por encima del horizonte.",
         "imagenes": [
-            "./ImgProductos/Empresa/Empresa3.avif",
-            "./ImgProductos/Empresa/Empresa3Miniatura1.avif",
-            "./ImgProductos/Empresa/Empresa3Miniatura2.avif",
-            "./ImgProductos/Empresa/Empresa3Miniatura3.avif"
+            "Empresa/Empresa3.avif",
+            "Empresa/Empresa3Miniatura1.avif",
+            "Empresa/Empresa3Miniatura2.avif",
+            "Empresa/Empresa3Miniatura3.avif"
         ]
     },
     {
@@ -41,10 +41,10 @@
         "precio": 7999.99,
         "descripcion": "Esté cubierto desde todos los ángulos con la cámara H5A Multisensor que puede ofrecer vistas de 180, 270 ó 360 grados.",
         "imagenes": [
-            "./ImgProductos/Empresa/Empresa4.avif",
-            "./ImgProductos/Empresa/Empresa4Miniatura1.avif",
-            "./ImgProductos/Empresa/Empresa4Miniatura2.avif",
-            "./ImgProductos/Empresa/Empresa4Miniatura3.avif"
+            "Empresa/Empresa4.avif",
+            "Empresa/Empresa4Miniatura1.avif",
+            "Empresa/Empresa4Miniatura2.avif",
+            "Empresa/Empresa4Miniatura3.avif"
         ]
     },
     {
@@ -53,10 +53,10 @@
         "precio": 999.99,
         "descripcion": "Optimiza el control y monitoreo de tu sistema de seguridad con nuestro avanzado controlador de cámaras. Ideal para la gestión de cámaras de red, cámaras analógicas, sistemas SSM y DVR.",
         "imagenes": [
-            "./ImgProductos/Empresa/Empresa5.png",
-            "./ImgProductos/Empresa/Empresa5Miniatura1.webp",
-            "./ImgProductos/Empresa/Empresa5Miniatura2.png",
-            "./ImgProductos/Empresa/Empresa5Miniatura3.png"
+            "Empresa/Empresa5.png",
+            "Empresa/Empresa5Miniatura1.webp",
+            "Empresa/Empresa5Miniatura2.png",
+            "Empresa/Empresa5Miniatura3.png"
         ]
     }
 ]

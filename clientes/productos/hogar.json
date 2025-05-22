@@ -5,10 +5,10 @@
         "precio": 1299.89,
         "descripcion": "Eficiente diseñado para brindarte tranquilidad en todo momento. Gracias a su conectividad Wi-Fi y funciones avanzadas, podrás monitorear tu espacio desde cualquier lugar.",
         "imagenes": [
-            "./ImgProductos/Hogar/Hogar1.webp",
-            "./ImgProductos/Hogar/Hogar1Miniatura1.webp",
-            "./ImgProductos/Hogar/Hogar1Miniatura2.webp",
-            "./ImgProductos/Hogar/Hogar1Miniatura3.webp"
+            "Hogar/Hogar1.webp",
+            "Hogar/Hogar1Miniatura1.webp",
+            "Hogar/Hogar1Miniatura2.webp",
+            "Hogar/Hogar1Miniatura3.webp"
         ]
     },
     {
@@ -17,10 +17,10 @@
         "precio": 1599.99,
         "descripcion": "Una solución compacta y versátil para tu seguridad. Con su función de movimiento PTZ (pan, tilt, zoom) y audio de dos vías, puedes comunicarte fácilmente y monitorear en tiempo real. Almacena tus grabaciones directamente en una tarjeta Micro SD para mayor seguridad.",
         "imagenes": [
-            "./ImgProductos/Hogar/Hogar2.webp",
-            "./ImgProductos/Hogar/Hogar2Miniatura1.jpg",
-            "./ImgProductos/Hogar/Hogar2Miniatura2.webp",
-            "./ImgProductos/Hogar/Hogar2Miniatura3.webp"
+            "Hogar/Hogar2.webp",
+            "Hogar/Hogar2Miniatura1.jpg",
+            "Hogar/Hogar2Miniatura2.webp",
+            "Hogar/Hogar2Miniatura3.webp"
         ]
     },
     {
@@ -29,10 +29,10 @@
         "precio": 1799.99,
         "descripcion": "Protección confiable para exteriores e interiores. Su diseño tipo bala ofrece una visión clara en alta definición, mientras que el micrófono integrado permite capturar audio ambiente. Con conectividad Wi-Fi, puedes monitorear en tiempo real desde tu dispositivo móvil.",
         "imagenes": [
-            "./ImgProductos/Hogar/Hogar3.webp",
-            "./ImgProductos/Hogar/Hogar3Miniatura1.jpg",
-            "./ImgProductos/Hogar/Hogar3Miniatura2.jpg",
-            "./ImgProductos/Hogar/Hogar3Miniatura3.jpg"
+            "Hogar/Hogar3.webp",
+            "Hogar/Hogar3Miniatura1.jpg",
+            "Hogar/Hogar3Miniatura2.jpg",
+            "Hogar/Hogar3Miniatura3.jpg"
         ]
     },
     {
@@ -41,10 +41,10 @@
         "precio": 1999.99,
         "descripcion": "Máxima flexibilidad para la seguridad de tu espacio. Esta cámara IP inalámbrica funciona sin cables gracias a su batería recargable, ideal para áreas sin acceso directo a corriente. Compatible con control remoto vía aplicación móvil.",
         "imagenes": [
-            "./ImgProductos/Hogar/Hogar4.webp",
-            "./ImgProductos/Hogar/Hogar4Miniatura1.avif",
-            "./ImgProductos/Hogar/Hogar4Miniatura2.avif",
-            "./ImgProductos/Hogar/Hogar4Miniatura3.jpg"
+            "Hogar/Hogar4.webp",
+            "Hogar/Hogar4Miniatura1.avif",
+            "Hogar/Hogar4Miniatura2.avif",
+            "Hogar/Hogar4Miniatura3.jpg"
         ]
     },
     {
@@ -53,10 +53,10 @@
         "precio": 2999.99,
         "descripcion": "Sistema de alarma de puerta WIFI Ys pg107 Tuya Security System System Kit SmartLife App Control con la cámara IP Detector de movimiento de marcación automática WIFI GSM Home Smart Alarm Para Hogares.",
         "imagenes": [
-            "./ImgProductos/Hogar/HogarKitCompleto.jpg",
-            "./ImgProductos/Hogar/HogarKitCompletoMiniatura1.webp",
-            "./ImgProductos/Hogar/HogarKitCompletoMiniatura2.jpg",
-            "./ImgProductos/Hogar/HogarKitCompletoMiniatura3.jpg"
+            "Hogar/HogarKitCompleto.jpg",
+            "Hogar/HogarKiMiniatura1.webp",
+            "Hogar/HogarKiMiniatura2.jpg",
+            "Hogar/HogarKiMiniatura3.jpg"
         ]
     }
 ]
