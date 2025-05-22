@@ -30,8 +30,8 @@
 ## 📸 Vista Previa
 
 <!-- Agrega aquí tus capturas de pantalla -->
-![Dashboard](https://imgur.com/dashboard-example.png)
-![Inventario](https://imgur.com/inventory-example.png)
+![Dashboard](/img/imagenClientesDashboardPrincipal.png)
+![Inventario](/img/imagenInventarioAdmins.png)
 
 ---
 
