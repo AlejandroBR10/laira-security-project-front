@@ -95,14 +95,13 @@
         .btn-comprar:hover {
             background: #005eaac2;
         }
-    </style>
+         </style>
 </head>
 <body>
-    <!-- Header / Navbar combinada -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-navbar">
     <div class="navbar-container d-flex align-items-center justify-content-between mx-auto">
         <!-- Logo alineado a la izquierda -->
-        <a class="navbar-brand" href="../
+          <a class="navbar-brand" href="../
         ../../index.html">
             <img src="../../../img/logo.png" height="25" alt="">
         </a>
@@ -184,12 +183,12 @@
 
 
     <div class="producto-container">
-        <div class="galeria-miniaturas" id="galeria-miniaturas"></div>
+         <div class="galeria-miniaturas" id="galeria-miniaturas"></div>
         <div class="imagen-principal">
             <img id="img-principal" src="" alt="Producto principal">
         </div>
         <div class="info-producto">
-            <h2 id="nombre-producto"></h2>
+             <h2 id="nombre-producto"></h2>
             <div class="precio" id="precio-producto"></div>
             <div class="descripcion" id="descripcion-producto"></div>
             <button class="btn-comprar">COMPRAR</button>
@@ -197,68 +196,75 @@
     </div>
 
     <script>
-        // Función para obtener el parámetro "id" de la URL
         function obtenerParametroURL(nombre) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(nombre);
         }
 
-        // Función para cargar los datos del producto
         function cargarProducto() {
-            const idProducto = obtenerParametroURL('id'); // Obtiene el ID del producto de la URL
+            const idProducto = obtenerParametroURL('id');
+            const categoria = obtenerParametroURL('categoria') || 'hogar';
 
-            if (!idProducto) {
-                console.error('No se proporcionó un ID de producto en la URL.');
-                return;
-            }
+            let jsonPath = '';
+            if (categoria === 'hogar') jsonPath = '../hogar.json';
+            else if (categoria === 'empresas') jsonPath = '../empresas.json';
+            else if (categoria === 'negocio') jsonPath = '../negocio.json';
+            else jsonPath = '../hogar.json';
 
-            // Cargar el archivo JSON correspondiente
-            fetch('../hogar.json') // Cambia a la ruta del archivo JSON correspondiente
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error al cargar el archivo JSON');
-                    }
-                    return response.json();
-                })
+            fetch(jsonPath)
+                .then(response => response.json())
                 .then(productos => {
-                    // Buscar el producto por su ID
                     const producto = productos.find(p => p.id === parseInt(idProducto));
-
                     if (!producto) {
-                        console.error('Producto no encontrado.');
+                        document.getElementById('nombre-producto').textContent = 'Producto no encontrado';
+                        document.getElementById('precio-producto').textContent = '';
+                        document.getElementById('descripcion-producto').textContent = '';
+                        // Limpia imágenes si no hay producto
+                        document.getElementById('img-principal').src = '';
+                        document.getElementById('galeria-miniaturas').innerHTML = '';
                         return;
                     }
-
-                    // Actualizar la imagen principal
+                    // Imagen principal
                     document.getElementById('img-principal').src = producto.imagenes[0];
+                    document.getElementById('img-principal').alt = producto.nombre;
 
-                    // Actualizar la galería de miniaturas
+                    // Galería de miniaturas
                     const galeria = document.getElementById('galeria-miniaturas');
+                    galeria.innerHTML = '';
                     producto.imagenes.forEach((imagen, index) => {
                         const img = document.createElement('img');
                         img.src = imagen;
-                        img.alt = `Miniatura ${index + 1}`;
-                        img.classList.add(index === 0 ? 'selected' : '');
-                        img.onclick = () => cambiarImagen(imagen, img);
+                        img.alt = `Miniatura ${index + 1} - ${producto.nombre}`;
+                        if (index === 0) img.classList.add('selected');
+                        img.onclick = function() { cambiarImagen(imagen, img); };
                         galeria.appendChild(img);
                     });
 
-                    // Actualizar el nombre, precio y descripción
+                    // Información del producto
                     document.getElementById('nombre-producto').textContent = producto.nombre;
                     document.getElementById('precio-producto').textContent = `$${producto.precio.toFixed(2)}`;
                     document.getElementById('descripcion-producto').textContent = producto.descripcion;
                 })
-                .catch(error => console.error('Error al cargar el producto:', error));
+                .catch(error => {
+                    document.getElementById('nombre-producto').textContent = 'Error al cargar el producto';
+                    document.getElementById('precio-producto').textContent = '';
+                    document.getElementById('descripcion-producto').textContent = '';
+                    document.getElementById('img-principal').src = '';
+                    document.getElementById('galeria-miniaturas').innerHTML = '';
+                    console.error(error);
+                });
         }
 
-        // Función para cambiar la imagen principal
+        // Esta función debe coincidir con la estructura de los JSON
         function cambiarImagen(src, el) {
-            document.getElementById('img-principal').src = src;
-            document.querySelectorAll('.galeria-miniaturas img').forEach(img => img.classList.remove('selected'));
-            el.classList.add('selected');
+            var imgPrincipal = document.getElementById('img-principal');
+            if (imgPrincipal) {
+                imgPrincipal.src = src;
+                document.querySelectorAll('.galeria-miniaturas img').forEach(img => img.classList.remove('selected'));
+                el.classList.add('selected');
+            }
         }
 
-        // Cargar el producto al cargar la página
         cargarProducto();
     </script>
 </body>
