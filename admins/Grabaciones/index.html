@@ -2,15 +2,14 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grabaciones</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="bg-light">
-
   <div class="d-flex">
     <!-- Sidebar -->
     <div class="sidebar bg-dark text-white d-flex flex-column p-3" style="width: 250px; height: 100vh;">
@@ -19,7 +18,7 @@
         <h4>Admin Panel</h4>
       </div>
       <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item"><a href="../Clientes/index.html" class="nav-link text-white">Clientes</a></li>
+        <li><a href="../Clientes/index.html" class="nav-link text-white">Clientes</a></li>
         <li><a href="../Ubicaciones/index.html" class="nav-link text-white">Ubicaciones</a></li>
         <li><a href="../Grabaciones/index.html" class="nav-link active text-white bg-primary">Grabaciones</a></li>
         <li><a href="../Servicios/index.html" class="nav-link text-white">Productos</a></li>
@@ -38,86 +37,51 @@
         <h5 class="text-center mb-4 text-primary">Historial de Grabaciones</h5>
         <p class="text-center">Aquí puedes gestionar las grabaciones de los clientes.</p>
 
-        <script>
-          document.addEventListener('DOMContentLoaded', function () {
-            const personaSelect = document.getElementById('personaSelect');
-            const camarasContainer = document.getElementById('camarasContainer');
-
-            function updateCamerasVisibility(selectedPersona) {
-              // Hide all camera rows
-              const cameraRows = camarasContainer.querySelectorAll('.row');
-              cameraRows.forEach(row => {
-                row.style.display = 'none';
-              });
-
-              // Show the camera rows for the selected persona
-              const selectedCameraRows = camarasContainer.querySelectorAll('.' + selectedPersona);
-              selectedCameraRows.forEach(row => {
-                row.style.display = 'flex';
-              });
-            }
-
-            personaSelect.addEventListener('change', function () {
-              const selectedPersona = this.value;
-              updateCamerasVisibility(selectedPersona);
-            });
-
-            // Initialize the camera visibility based on the default selected value
-            updateCamerasVisibility(personaSelect.value);
-          });
-        </script>
-
         <!-- Select para seleccionar persona -->
         <div class="row justify-content-center mb-4">
           <div class="col-auto">
             <label for="personaSelect" class="form-label text-primary">Seleccionar Persona:</label>
             <select id="personaSelect" class="form-select">
-              <option value="persona1">Juan Perez</option>
-              <option value="persona2">Armando Ramirez</option>
-              <option value="persona3">Mayra Ayala</option>
+              <!-- Opciones serán agregadas por JS -->
             </select>
+          </div>
+        </div>
+
+        <!-- Contenedor de cámaras cuando no se selecciona una persona -->
+        <div id="defaultCameras" class="row justify-content-center mb-4 default-cameras">
+          <div class="col-auto">
+            <h4 class="text-center mb-4 text-primary">Cámara 1</h4>
+            <img src="../../img/grabaciones/sample_1.png" alt="Video cámara 1" class="img-fluid">
+          </div>
+          <div class="col-auto">
+            <h4 class="text-center mb-4 text-primary">Cámara 2</h4>
+            <img src="../../img/grabaciones/sample_2.png" alt="Video cámara 2" class="img-fluid">
           </div>
         </div>
 
         <!-- Contenedor de cámaras dinámicas -->
         <div id="camarasContainer">
-          <div class="row justify-content-center mb-4 persona1">
+          <!-- Persona 1 -->
+          <div class="row justify-content-center mb-4 persona1" style="display: none;">
             <div class="col-auto">
               <h4 class="text-center mb-4 text-primary">Cámara 1</h4>
-              <a href="https://drive.google.com/file/d/1WCEFyXoTUtk5IdlaEcP_BpVJRvIihs1T/view?usp=sharing"
-                target="_blank">
-                <img src="../../img/grabaciones/sample_1.gif" alt="Video cámara 1" width="500" height="300"
-                  class="img-fluid">
-              </a>
+              <img src="../../img/grabaciones/sample_1.gif" alt="Video cámara 1" class="img-fluid">
             </div>
             <div class="col-auto">
               <h4 class="text-center mb-4 text-primary">Cámara 2</h4>
-              <a href="https://drive.google.com/file/d/1WCEFyXoTUtk5IdlaEcP_BpVJRvIihs1T/view?usp=sharing"
-                target="_blank">
-                <img src="../../img/grabaciones/sample_2.gif" alt="Video cámara 2" width="500" height="300"
-                  class="img-fluid">
-              </a>
+              <img src="../../img/grabaciones/sample_2.gif" alt="Video cámara 2" class="img-fluid">
             </div>
           </div>
 
+          <!-- Persona 2 -->
           <div class="row justify-content-center mb-4 persona2" style="display: none;">
             <div class="col-auto">
               <h4 class="text-center mb-4 text-primary">Cámara 3</h4>
-              <a href="https://drive.google.com/file/d/1FM5-lnnwbNxQxCJCqlWE7vJLfZ2w9mJY/view?usp=sharing"
-                target="_blank">
-                <img src="../../img/grabaciones/sample_3.gif" alt="Video cámara 3" width="500" height="300"
-                  class="img-fluid">
-              </a>
+              <img src="../../img/grabaciones/sample_3.gif" alt="Video cámara 3" class="img-fluid">
             </div>
-          </div>
-
-          <div class="row justify-content-center mb-4 persona3" style="display: none;">
             <div class="col-auto">
               <h4 class="text-center mb-4 text-primary">Cámara 4</h4>
-              <a href="https://drive.google.com/file/d/TU_ID_AQUI/view?usp=sharing" target="_blank">
-                <img src="../../img/grabaciones/sample_4.gif" alt="Video cámara 4" width="500" height="300"
-                  class="img-fluid">
-              </a>
+              <img src="../../img/grabaciones/sample_4.gif" alt="Video cámara 4" class="img-fluid">
             </div>
           </div>
         </div>
@@ -125,8 +89,7 @@
     </div>
   </div>
 
-
-
+  <script src="index.js" defer type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

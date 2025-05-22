@@ -1,26 +1,60 @@
+/* Contenedor de la vista previa */
 .preview-container {
-    position: relative;
-    width: 500px; /* Ajusta según el tamaño de tus imágenes */
-    height: 300px;
-    overflow: hidden;
-  }
-  
-  .preview-static,
-  .preview-gif {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .preview-static {
-    z-index: 2;
-    transition: opacity 0.3s ease;
-  }
-  
-  .preview-container:hover .preview-static {
+  position: relative;
+  width: 640px; /* Ajusta según el tamaño de tus imágenes */
+  height: 360px;
+  overflow: hidden;
+}
+
+/* Estilos para las imágenes */
+.preview-static,
+.preview-gif {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Transición para las imágenes apagadas */
+.preview-static {
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+/* Efecto al pasar el cursor */
+.preview-container:hover .preview-static {
+  opacity: 0;
+}
+
+.default-cameras img {
+  opacity: 1;
+  filter: brightness(5%);
+  width: 640px;
+  height: 360px;
+  object-fit: cover;
+  transition: filter 0.8s ease-in-out, opacity 0.8s ease-in-out; /* Suaviza la animación */
+}
+
+
+.camara-activa {
+  opacity: 1 !important;
+  filter: brightness(100%) blur(0px);
+  animation: encendido 1s ease-in-out forwards;
+}
+
+@keyframes encendido {
+  0% {
     opacity: 0;
+    filter: brightness(5%) blur(5px);
   }
-  
+  50% {
+    opacity: 0.5;
+    filter: brightness(50%) blur(3  px);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(100%) blur(0px);
+  }
+}
