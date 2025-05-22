@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de compra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #ffffff, #d0e7ff);
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-center {
+            flex: 1 1 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        .compra-box {
+            border: 2px solid #005DAA;
+            border-radius: 18px;
+            max-width: 700px;
+            width: 100%;
+            margin-top: 50px; 
+            background: #fff;
+            padding: 32px 28px 28px 28px;
+            box-shadow: 0 4px 18px rgba(0,93,170,0.08);
+        }
+
+        .compra-img {
+            display: block;
+            margin: 0 auto 18px auto;
+            max-width: 180px;
+            max-height: 180px;
+            object-fit: contain;
+        }
+        .compra-nombre {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #005DAA;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .compra-precio {
+            font-size: 1.2rem;
+            color: #0091ea;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #005DAA;
+        }
+        .btn-confirmar {
+            background: #005DAA;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 18px;
+            transition: background 0.2s;
+        }
+        .btn-confirmar:hover {
+            background: #004a8a;
+        }
+        .compra-box.compra-flex {
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            align-items: stretch;
+            max-width: 1000px;
+            margin: 60px auto 0 auto;
+            background: #fff;
+            border: 2px solid #005DAA;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(0,93,170,0.08);
+            padding: 32px 28px 28px 28px;
+            min-height: 320px;
+        }
+        .compra-img-col {
+            flex: 0 0 230px;
+            display: flex;
+            align-items: center;     
+            justify-content: center; 
+            min-height: 260px;        
+            height: 100%;
+        }
+        .compra-img {
+            max-width: 500px;
+            max-height: 500px;
+            object-fit: contain;
+            border: none;
+            background: none;
+            display: block;
+            margin-top: 10px;
+        }
+        .compra-info-col {
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+        }
+        .compra-nombre {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #005DAA;
+            text-align: left;
+            margin-bottom: 12px;
+        }
+        .compra-precio {
+            font-size: 1.1rem;
+            color: #0091ea;
+            font-weight: bold;
+            margin-bottom: 0;
+            margin-top: 0;
+            text-align: left;
+            min-width: 120px;
+        }
+        .compra-bottom {
+            margin-top: 18px;
+        }
+        .btn-confirmar {
+            background: #005DAA;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background 0.2s;
+            margin-top: 0;
+            white-space: nowrap;
+        }
+        .btn-confirmar:hover {
+            background: #004a8a;
+        }
+        @media (max-width: 700px) {
+            .compra-box.compra-flex {
+                flex-direction: column;
+                align-items: center;
+                max-width: 98vw;
+                padding: 18px 6vw;
+            }
+            .compra-img-col {
+                justify-content: center;
+                margin-bottom: 18px;
+                min-height: 0;
+            }
+            .compra-info-col {
+                width: 100%;
+            }
+            .compra-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-navbar">
+    <div class="navbar-container d-flex align-items-center justify-content-between mx-auto">
+        <!-- Logo alineado a la izquierda -->
+          <a class="navbar-brand" href="../
+        ../../index.html">
+            <img src="../../../img/logo.png" height="25" alt="">
+        </a>
+
+        <!-- Botón responsive -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menú alineado a la derecha -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../../index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline active" href="../index.html">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../../servicios/index.html">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../../contacto/index.html">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../../comentarios/index.html">Comentarios</a>
+                </li>
+
+                <!-- Dropdown de usuario -->
+                <li class="nav-item dropdown ms-3">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../../img/user.png" alt="Usuario" width="32" height="32" class="rounded-circle me-2">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Estilos personalizados -->
+<style>
+    .shadow-navbar {
+        box-shadow: 0 4px 10px rgba(0, 123, 255, 0.25);
+    }
+
+    .navbar-container {
+        width: 80%;
+    }
+
+    .nav-link.nav-underline {
+        position: relative;
+        padding-bottom: 4px;
+    }
+
+    .nav-link.nav-underline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0%;
+        height: 2px;
+        background-color: transparent;
+        box-shadow: none;
+        transition: width 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;  
+    }
+
+    .nav-link.nav-underline:hover::after,
+    .nav-link.nav-underline.active::after {
+        width: 100%;
+        background-color: #007bff;
+        box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+        border-radius: 2px;
+    }
+</style>
+
+    <main class="main-center">
+        <!-- Recuadro de detalles de compra -->
+        <div class="compra-box compra-flex" id="compra-box">
+            <div class="compra-img-col">
+                <img id="compra-img" class="compra-img" src="" alt="Producto">
+            </div>
+            <div class="compra-info-col">
+                <div id="compra-nombre" class="compra-nombre"></div>
+                <form id="form-compra" autocomplete="off">
+                    <div class="mb-3">
+                        <label for="nombre-tarjeta" class="form-label">Nombre en la tarjeta</label>
+                        <input type="text" class="form-control" id="nombre-tarjeta" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numero-tarjeta" class="form-label">Número de tarjeta</label>
+                        <input type="text" class="form-control" id="numero-tarjeta" maxlength="19" placeholder="0000 0000 0000 0000" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label for="expiracion" class="form-label">Expiración</label>
+                            <input type="text" class="form-control" id="expiracion" maxlength="5" placeholder="MM/AA" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="password" class="form-control" id="cvv" maxlength="4" required>
+                        </div>
+                    </div>
+                    <div class="compra-bottom d-flex align-items-center justify-content-between">
+                        <div id="compra-precio" class="compra-precio"></div>
+                        <button type="submit" class="btn-confirmar ms-3">Confirmar compra</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        
+        function obtenerParametroURL(nombre) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(nombre);
+        }
+
+        // Busca  JSON 
+        function cargarProductoCompra() {
+            const idProducto = obtenerParametroURL('id');
+            const categoria = obtenerParametroURL('categoria') || 'hogar';
+
+            let jsonPath = '';
+            if (categoria === 'hogar') jsonPath = './hogar.json';
+            else if (categoria === 'empresas') jsonPath = './empresas.json';
+            else if (categoria === 'negocio') jsonPath = './negocio.json';
+            else jsonPath = './hogar.json';
+
+            fetch(jsonPath)
+                .then(response => response.json())
+                .then(productos => {
+                    const producto = productos.find(p => p.id === parseInt(idProducto));
+                    if (!producto) {
+                        document.getElementById('compra-nombre').textContent = "Producto no encontrado";
+                        document.getElementById('compra-img').style.display = "none";
+                        document.getElementById('compra-precio').textContent = "";
+                        return;
+                    }
+                    document.getElementById('compra-img').src = `ImgProductos/${producto.imagenes[0]}`;
+                    document.getElementById('compra-img').alt = producto.nombre;
+                    document.getElementById('compra-nombre').textContent = producto.nombre;
+                    document.getElementById('compra-precio').textContent = `Total: $${producto.precio.toFixed(2)}`;
+                })
+                .catch(() => {
+                    document.getElementById('compra-nombre').textContent = "Error al cargar el producto";
+                    document.getElementById('compra-img').style.display = "none";
+                    document.getElementById('compra-precio').textContent = "";
+                });
+        }
+
+        // Validación 
+        document.getElementById('form-compra').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Compra confirmada!');
+            //  backend-----
+        });
+
+        cargarProductoCompra();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -209,7 +209,7 @@
              <h2 id="nombre-producto"></h2>
             <div class="precio" id="precio-producto"></div>
             <div class="descripcion" id="descripcion-producto"></div>
-            <button class="btn-comprar">COMPRAR</button>
+            <button class="btn-comprar" onclick="comprarProducto()">COMPRAR</button>
         </div>
     </div>
 
@@ -281,6 +281,12 @@
                 document.querySelectorAll('.galeria-miniaturas img').forEach(img => img.classList.remove('selected'));
                 el.classList.add('selected');
             }
+        }
+
+        function comprarProducto() {
+            const idProducto = obtenerParametroURL('id');
+            const categoria = obtenerParametroURL('categoria') || 'hogar';
+            window.location.href = `../comprar.html?id=${idProducto}&categoria=${categoria}`;
         }
 
         cargarProducto();
