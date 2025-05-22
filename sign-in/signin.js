@@ -47,11 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(authData),
-        //credentials: "include", 
+        credentials: "include", 
       });
 
       if (responseCustomers.status === 201 && responseAuth.status === 201) {
-        console.log("correctooo");
+        console.log("Registro correcto");
         window.location.href = "/dashboard.html";
         
       } else {
