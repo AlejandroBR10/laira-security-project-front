@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de tu compra</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #f8fbff, #d0e7ff);
+            background-attachment: fixed;
+        }
+        .carrito-box {
+            border: 2px solid #007bff22;
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 4px 18px rgba(0,93,170,0.08);
+            padding: 32px 28px 28px 28px;
+        }
+        .carrito-producto {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e3e3e3;
+            border-radius: 12px;
+            padding: 10px 12px;
+            margin-bottom: 14px;
+            background: #f8faff;
+            transition: box-shadow 0.2s;
+        }
+        .carrito-producto:hover {
+            box-shadow: 0 2px 12px #007bff22;
+        }
+        .carrito-producto img {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            margin-right: 18px;
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid #e3e3e3;
+        }
+        .carrito-producto .fw-bold {
+            color: #005DAA;
+        }
+        .carrito-producto .text-primary {
+            color: #0091ea !important;
+        }
+        .carrito-total {
+            font-size: 1.2rem;
+            color: #0091ea;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 10px;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #005DAA;
+        }
+        .btn-confirmar {
+            background: #005DAA;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 18px;
+            transition: background 0.2s;
+        }
+        .btn-confirmar:hover {
+            background: #004a8a;
+        }
+        .btn-regresar {
+            background: #e3eafc;
+            color: #005DAA;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 18px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-regresar:hover {
+            background: #cfe2ff;
+            color: #003366;
+        }
+        .resumen-pago-box {
+            background: #f1f8ff;
+            border-radius: 12px;
+            padding: 18px 18px 10px 18px;
+            margin-top: 20px;
+            border: 1px solid #b6d4fe;
+        }
+        .resumen-pago-box .bi {
+            color: #007bff;
+        }
+        @media (max-width: 991.98px) {
+            .carrito-box {
+                padding: 18px 6px 18px 6px;
+            }
+            .carrito-producto img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        body {
+    background: linear-gradient(to bottom, #ffffff, #d0e7ff);
+    background-attachment: fixed;
+}
+    .shadow-navbar {
+        box-shadow: 0 4px 10px rgba(0, 123, 255, 0.25);
+    }
+
+    .navbar-container {
+        width: 80%;
+    }
+
+    .nav-link.nav-underline {
+        position: relative;
+        padding-bottom: 4px;
+    }
+
+    .nav-link.nav-underline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0%;
+        height: 2px;
+        background-color: transparent;
+        box-shadow: none;
+        transition: width 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;  
+    }
+
+    .nav-link.nav-underline:hover::after,
+    .nav-link.nav-underline.active::after {
+        width: 100%;
+        background-color: #007bff;
+        box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+        border-radius: 2px;
+    }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-navbar">
+    <div class="navbar-container d-flex align-items-center justify-content-between mx-auto">
+        <a class="navbar-brand" href="../../index.html">
+            <img src="../../img/logo.png" height="25" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../../index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline active" href="../productos/index.html">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../servicios/index.html">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../contacto/index.html">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-underline" href="../comentarios/index.html">Comentarios</a>
+                </li>
+                <li class="nav-item dropdown ms-3">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../../img/user.png" alt="Usuario" width="32" height="32" class="rounded-circle me-2">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item ms-3">
+                  <button id="btnCarrito" class="btn btn-outline-primary position-relative" data-bs-toggle="modal" data-bs-target="#modalCarrito" style="padding: 4px 10px;">
+                    <i class="bi bi-cart3" style="font-size: 1.15rem;"></i>
+                    <span id="carritoCantidad" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:0.85rem;">0</span>
+                  </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <div class="row justify-content-center g-4">
+        <!-- Carrito productos -->
+        <div class="col-lg-6">
+            <div class="carrito-box h-100 d-flex flex-column">
+                <button class="btn-regresar align-self-start mb-3" onclick="window.history.back()">
+                    <i class="bi bi-arrow-left"></i> Regresar
+                </button>
+                <h4 class="mb-4 text-primary text-center"><i class="bi bi-cart3 me-2"></i>Productos en tu carrito</h4>
+                <div id="carritoProductos"></div>
+                <div class="carrito-total mb-2">
+                    Total: <span id="carritoTotal"></span>
+                </div>
+            </div>
+        </div>
+        <!-- Formulario de pago -->
+        <div class="col-lg-6">
+            <div class="carrito-box h-100">
+                <h4 class="mb-4 text-primary text-center"><i class="bi bi-credit-card-2-front me-2"></i>Datos de pago</h4>
+                <form id="formCompraCarrito" autocomplete="off" class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-12 mb-2">
+                            <label for="nombre-tarjeta" class="form-label">Nombre en la tarjeta</label>
+                            <input type="text" class="form-control" id="nombre-tarjeta" required>
+                            <div class="invalid-feedback">Ingresa el nombre tal como aparece en la tarjeta.</div>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <label for="numero-tarjeta" class="form-label">Número de tarjeta</label>
+                            <input type="text" class="form-control" id="numero-tarjeta" maxlength="19" placeholder="0000 0000 0000 0000" required pattern="\d{16}">
+                            <div class="invalid-feedback">Ingresa un número de tarjeta válido.</div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <label for="expiracion" class="form-label">Expiración</label>
+                            <input type="text" class="form-control" id="expiracion" maxlength="5" placeholder="MM/AA" required pattern="\d{2}/\d{2}">
+                            <div class="invalid-feedback">Formato: MM/AA</div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="password" class="form-control" id="cvv" maxlength="4" required pattern="\d{3,4}">
+                            <div class="invalid-feedback">CVV inválido.</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-confirmar mt-3">Confirmar y pagar</button>
+                </form>
+                <div id="resumenPago" style="display:none;">
+                    <div class="resumen-pago-box">
+                        <h5 class="text-center text-success mb-3"><i class="bi bi-receipt"></i> Resumen de pago</h5>
+                        <div id="resumenPagoDatos"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Cargar productos del carrito y mostrarlos
+function cargarCarrito() {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const contenedor = document.getElementById('carritoProductos');
+    contenedor.innerHTML = '';
+    let total = 0;
+
+    if (carrito.length === 0) {
+        contenedor.innerHTML = '<div class="text-center text-muted my-4"><i class="bi bi-cart-x" style="font-size:2.5rem;"></i><div class="mt-2">Tu carrito está vacío</div></div>';
+        document.getElementById('carritoTotal').textContent = '$0.00';
+        document.querySelector('button[type="submit"]').disabled = true;
+        return;
+    }
+
+    carrito.forEach((prod) => {
+        total += prod.precio * prod.cantidad;
+        const div = document.createElement('div');
+        div.className = "carrito-producto";
+        div.innerHTML = `
+            <img src="${prod.imagen}" alt="${prod.nombre}">
+            <div class="flex-grow-1">
+                <div class="fw-bold">${prod.nombre}</div>
+                <div class="text-muted small">${prod.categoria}</div>
+                <div class="text-primary fw-bold">$${prod.precio} x ${prod.cantidad}</div>
+            </div>
+        `;
+        contenedor.appendChild(div);
+    });
+    document.getElementById('carritoTotal').textContent = `$${total.toFixed(2)}`;
+    document.querySelector('button[type="submit"]').disabled = false;
+}
+
+// Mostrar resumen de pago
+function mostrarResumenPago() {
+    const nombre = document.getElementById('nombre-tarjeta').value;
+    const numero = document.getElementById('numero-tarjeta').value;
+    const expiracion = document.getElementById('expiracion').value;
+    const cvv = document.getElementById('cvv').value;
+    const total = document.getElementById('carritoTotal').textContent;
+
+    document.getElementById('resumenPagoDatos').innerHTML = `
+        <div class="mb-2"><i class="bi bi-person-badge me-2"></i><strong>Nombre:</strong> ${nombre}</div>
+        <div class="mb-2"><i class="bi bi-credit-card-2-front me-2"></i><strong>Tarjeta:</strong> **** **** **** ${numero.slice(-4)}</div>
+        <div class="mb-2"><i class="bi bi-calendar me-2"></i><strong>Expiración:</strong> ${expiracion}</div>
+        <div class="mb-2"><i class="bi bi-shield-lock me-2"></i><strong>CVV:</strong> ***</div>
+        <div class="mb-2"><i class="bi bi-cash-coin me-2"></i><strong>Total pagado:</strong> ${total}</div>
+        <div class="alert alert-success mt-3 mb-0 text-center">¡Pago realizado con éxito!</div>
+    `;
+    document.getElementById('resumenPago').style.display = '';
+}
+
+// Bootstrap validation + lógica de pago
+(function () {
+    'use strict';
+    window.onload = cargarCarrito;
+    var form = document.getElementById('formCompraCarrito');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (form.checkValidity()) {
+            mostrarResumenPago();
+            localStorage.removeItem('carrito');
+            form.style.display = 'none';
+        }
+        form.classList.add('was-validated');
+    }, false);
+})();
+</script>
+<footer class="footer">
+    <div class="container">
+        <p class="text-center">Hecho con ❤️ por Equipo 1 | Todos los derechos reservados © 2025</p>
+    </div>
+</footer>
+</body>
+</html>

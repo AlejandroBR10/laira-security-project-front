@@ -1,0 +1,159 @@
+ body {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #ffffff, #d0e7ff);
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-center {
+            flex: 1 1 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        .compra-box {
+            border: 2px solid #005DAA;
+            border-radius: 18px;
+            max-width: 700px;
+            width: 100%;
+            margin-top: 50px; 
+            background: #fff;
+            padding: 32px 28px 28px 28px;
+            box-shadow: 0 4px 18px rgba(0,93,170,0.08);
+        }
+
+        .compra-img {
+            display: block;
+            margin: 0 auto 18px auto;
+            max-width: 180px;
+            max-height: 180px;
+            object-fit: contain;
+        }
+        .compra-nombre {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #005DAA;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .compra-precio {
+            font-size: 1.2rem;
+            color: #0091ea;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #005DAA;
+        }
+        .btn-confirmar {
+            background: #005DAA;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 18px;
+            transition: background 0.2s;
+        }
+        .btn-confirmar:hover {
+            background: #004a8a;
+        }
+        .compra-box.compra-flex {
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            align-items: stretch;
+            max-width: 1000px;
+            margin: 60px auto 0 auto;
+            background: #fff;
+            border: 2px solid #005DAA;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(0,93,170,0.08);
+            padding: 32px 28px 28px 28px;
+            min-height: 320px;
+        }
+        .compra-img-col {
+            flex: 0 0 230px;
+            display: flex;
+            align-items: center;     
+            justify-content: center; 
+            min-height: 260px;        
+            height: 100%;
+        }
+        .compra-img {
+            max-width: 500px;
+            max-height: 500px;
+            object-fit: contain;
+            border: none;
+            background: none;
+            display: block;
+            margin-top: 10px;
+        }
+        .compra-info-col {
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+        }
+        .compra-nombre {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #005DAA;
+            text-align: left;
+            margin-bottom: 12px;
+        }
+        .compra-precio {
+            font-size: 1.1rem;
+            color: #0091ea;
+            font-weight: bold;
+            margin-bottom: 0;
+            margin-top: 0;
+            text-align: left;
+            min-width: 120px;
+        }
+        .compra-bottom {
+            margin-top: 18px;
+        }
+        .btn-confirmar {
+            background: #005DAA;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background 0.2s;
+            margin-top: 0;
+            white-space: nowrap;
+        }
+        .btn-confirmar:hover {
+            background: #004a8a;
+        }
+        @media (max-width: 700px) {
+            .compra-box.compra-flex {
+                flex-direction: column;
+                align-items: center;
+                max-width: 98vw;
+                padding: 18px 6vw;
+            }
+            .compra-img-col {
+                justify-content: center;
+                margin-bottom: 18px;
+                min-height: 0;
+            }
+            .compra-info-col {
+                width: 100%;
+            }
+            .compra-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }

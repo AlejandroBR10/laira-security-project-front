@@ -113,22 +113,40 @@
         .btn-comprar:hover {
             background: #005eaac2;
         }
+.btn-agregar-carrito {
+    background: #fff;
+    color: #005DAA;
+    border: 2px solid #005DAA;
+    border-radius: 25px;
+    padding: 14px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,93,170,0.08);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.btn-agregar-carrito:hover {
+    background: #005DAA;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0,93,170,0.15);
+}
          </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-navbar">
     <div class="navbar-container d-flex align-items-center justify-content-between mx-auto">
         <!-- Logo alineado a la izquierda -->
-          <a class="navbar-brand" href="../
-        ../../index.html">
+        <a class="navbar-brand" href="../../index.html">
             <img src="../../../img/logo.png" height="25" alt="">
         </a>
-
         <!-- Botón responsive -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <!-- Menú alineado a la derecha -->
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav align-items-center">
@@ -136,33 +154,61 @@
                     <a class="nav-link nav-underline" href="../../index.html">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-underline active" href="../index.html">Productos</a>
+                    <a class="nav-link nav-underline active" href="../productos/index.html">Productos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-underline" href="../../servicios/index.html">Servicios</a>
+                    <a class="nav-link nav-underline" href="../servicios/index.html">Servicios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-underline" href="../../contacto/index.html">Contacto</a>
+                    <a class="nav-link nav-underline" href="../contacto/index.html">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-underline" href="../../comentarios/index.html">Comentarios</a>
+                    <a class="nav-link nav-underline" href="../comentarios/index.html">Comentarios</a>
                 </li>
-
                 <!-- Dropdown de usuario -->
                 <li class="nav-item dropdown ms-3">
                     <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../../img/user.png" alt="Usuario" width="32" height="32" class="rounded-circle me-2">
+                        <img src="../../../img/user.png" alt="Usuario" width="32" height="32" class="rounded-circle me-2">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
                         <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
                     </ul>
                 </li>
+                <li class="nav-item ms-3">
+                  <button id="btnCarrito" class="btn btn-outline-primary position-relative" data-bs-toggle="modal" data-bs-target="#modalCarrito" style="padding: 4px 10px;">
+                    <i class="bi bi-cart3" style="font-size: 1.15rem;"></i>
+                    <span id="carritoCantidad" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:0.85rem;">0</span>
+                  </button>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 
+
+<!-- Modal Carrito -->
+<div class="modal fade" id="modalCarrito" tabindex="-1" aria-labelledby="modalCarritoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content rounded-4">
+      <div class="modal-header bg-primary text-white rounded-top-4">
+        <h5 class="modal-title" id="modalCarritoLabel"><i class="bi bi-cart3 me-2"></i>Carrito de compras</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="carritoVacio" class="text-center text-muted my-4" style="display:none;">
+          <i class="bi bi-cart-x" style="font-size:2.5rem;"></i>
+          <div class="mt-2">Tu carrito está vacío</div>
+        </div>
+        <div id="carritoProductos"></div>
+      </div>
+      <div class="modal-footer rounded-bottom-4">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" id="btnComprarTodo">Comprar todo</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Estilos personalizados -->
 <style>
     .shadow-navbar {
@@ -210,6 +256,9 @@
             <div class="precio" id="precio-producto"></div>
             <div class="descripcion" id="descripcion-producto"></div>
             <button class="btn-comprar" onclick="comprarProducto()">COMPRAR</button>
+            <button class="btn-agregar-carrito" onclick="agregarAlCarrito()">
+    <i class="bi bi-cart-plus me-2"></i>Agregar al carrito
+</button>
         </div>
     </div>
 
@@ -289,7 +338,55 @@
             window.location.href = `../comprar.html?id=${idProducto}&categoria=${categoria}`;
         }
 
+        function agregarAlCarrito() {
+    // Obtén los datos del producto mostrado actualmente
+    const idProducto = obtenerParametroURL('id');
+    const categoria = obtenerParametroURL('categoria') || 'hogar';
+    const nombre = document.getElementById('nombre-producto').textContent;
+    const precio = document.getElementById('precio-producto').textContent.replace('$', '');
+    const imagen = document.getElementById('img-principal').src;
+
+    // Crea el objeto producto
+    const producto = {
+        id: idProducto,
+        categoria: categoria,
+        nombre: nombre,
+        precio: parseFloat(precio),
+        imagen: imagen,
+        cantidad: 1
+    };
+
+    // Obtén el carrito actual o crea uno nuevo
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Si el producto ya está en el carrito, suma la cantidad
+    const index = carrito.findIndex(p => p.id == producto.id && p.categoria == producto.categoria);
+    if (index !== -1) {
+        carrito[index].cantidad += 1;
+    } else {
+        carrito.push(producto);
+    }
+
+    // Guarda el carrito actualizado en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    alert("Producto agregado al carrito.");
+}
+
         cargarProducto();
     </script>
+    <!-- Agrega Bootstrap Icons si no lo tienes en tu <head> -->
+
+        <!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p class="text-center">Hecho con ❤️ por Equipo 1 | Todos los derechos reservados © 2025</p>
+    </div>
+</footer>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Agrega esto en el <head> si no lo tienes ya -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../productos.js"></script>
 </body>
 </html>
