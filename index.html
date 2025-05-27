@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LAIRA Security</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         /* Estilos personalizados */
         body {
@@ -102,13 +103,17 @@
                         <img src="img/user.png" alt="Usuario" width="32" height="32" class="rounded-circle me-2">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
-                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                        <li>
+  <a class="dropdown-item" href="#" id="btnMiCuenta" data-bs-toggle="modal" data-bs-target="#modalMiCuenta">
+    Mi cuenta
+  </a>
+</li>
+                        <li><a class="dropdown-item" href="login/login.html">Cerrar sesión</a></li>
                     </ul>
                 </li>
                 <!-- Ejemplo para el navbar -->
                 <li class="nav-item ms-3" id="loginBtn" style="display:none;">
-                    <a class="btn btn-outline-primary" href="/login/login.html">Iniciar sesión</a>
+                    <a class="btn btn-outline-primary" href="/sign-in/signin.html">Iniciar sesión</a>
                 </li>
             </ul>
         </div>
@@ -232,6 +237,45 @@
     </div>
 </section>
 
+<!-- Modal Mi Cuenta Mejorado -->
+<div class="modal fade" id="modalMiCuenta" tabindex="-1" aria-labelledby="modalMiCuentaLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-4">
+      <div class="modal-header bg-primary text-white rounded-top-4">
+        <h5 class="modal-title" id="modalMiCuentaLabel">Mi Cuenta</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <!-- Icono de usuario -->
+          <div class="mb-3">
+            <span class="d-inline-block rounded-circle bg-light border border-2 border-primary" style="width: 80px; height: 80px; line-height: 80px;">
+              <i class="bi bi-person-circle" style="font-size: 3.5rem; color: #007bff; vertical-align: middle;"></i>
+            </span>
+          </div>
+          <!-- Nombre -->
+          <h5 id="nombreUsuario" class="fw-bold mb-1"></h5>
+          <!-- Rol -->
+          <span id="rol" class="badge rounded-pill bg-info text-dark mb-2" style="font-size: 1rem;"></span>
+          <!-- Correo -->
+          <div class="mb-1">
+            <i class="bi bi-envelope-fill me-1 text-primary"></i>
+            <span id="correoUsuario" class="text-muted"></span>
+          </div>
+          <!-- Teléfono -->
+          <div>
+            <i class="bi bi-telephone-fill me-1 text-primary"></i>
+            <span id="telefonoUsuario" class="text-muted"></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer rounded-bottom-4">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Footer -->
 <footer class="footer">
     <div class="container">
@@ -241,6 +285,6 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="index.js" ></script>
+<script src="/index.js" type="module" ></script>
 </body>
 </html>

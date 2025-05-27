@@ -1,6 +1,8 @@
 import { STATUS } from "/constants/constants.js";
 import { API_URL } from "/constants/constants.js";
 import { agregarPagoDesdeModal } from "./add.js";
+import { agregarPagoDesdeModalUpdate } from "./update.js";
+import { eliminarPago } from "./delete.js";
 // Asegúrate de tener jsPDF en tu HTML:
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -9,11 +11,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   let clientes = [];
 
   // Referencias a elementos del DOM
+  let clienteId;
   const tablaPagos = document.getElementById("tablaPagos");
   const resumenCliente = document.getElementById("resumenCliente");
   const selectorClientes = document.getElementById("selectorClientes");
   const formAgregarPago = document.getElementById("formAgregarPago");
+  const formActualizarPago = document.getElementById("formEditarPago");
+  const formEliminarPago = document.getElementById("formEliminarPago");
   const inputCustomerIdAgregar = formAgregarPago.querySelector('[name="customerId"]');
+  const inputPaymentIdActualizar = formActualizarPago.querySelector('[name="paymentId"]');
 
   // 1. Obtener clientes y llenar el selector
   try {
@@ -31,8 +37,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
         // Evento para mostrar pagos al seleccionar desde el selector
         selectorClientes.addEventListener("change", () => {
-          const clienteId = selectorClientes.value;
-          console.log(clienteId);
+           clienteId = selectorClientes.value;
+          console.log("CLINETE:",  clienteId);
           mostrarResumenCliente(clienteId);
           mostrarPagos(clienteId);
           if (inputCustomerIdAgregar) inputCustomerIdAgregar.value = clienteId;
@@ -127,7 +133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       </tr>
     `).join("");
 
-    // Evento para seleccionar fila y activar botón de editar pago
+    // Evento para seleccionar fila y activar botones de editar y eliminar pago
     document.querySelectorAll(".fila-pago").forEach(row => {
       row.addEventListener("click", function () {
         // Remueve selección previa
@@ -135,7 +141,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         this.classList.add("table-active");
 
         const paymentId = this.getAttribute("data-payment-id");
-        console.log(paymentId);
+        inputCustomerIdAgregar.value = paymentId;
+
         // Habilita el botón de editar pago
         const btnEditar = document.getElementById("btnEditarPago");
         if (btnEditar) {
@@ -148,11 +155,34 @@ document.addEventListener("DOMContentLoaded", async () => {
             modalEditar?.show();
           };
         }
+
+        // Habilita el botón de eliminar pago
+        const btnEliminar = document.getElementById("btnEliminarPago");
+        if (btnEliminar) {
+          btnEliminar.removeAttribute("disabled");
+          btnEliminar.onclick = () => {
+            // Puedes cargar el id en un input hidden del modal si lo necesitas
+            document.querySelector("#formEliminarPago [name='paymentId']").value = paymentId;
+            console.log(paymentId);
+            
+            const modalEliminar = window.bootstrap?.Modal.getOrCreateInstance(document.getElementById("modalEliminarPago"));
+            modalEliminar?.show();
+            formEliminarPago.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    try{
+      await eliminarPago(paymentId);
+    }catch(err){
+      alert(err.message);
+    }
+  });
+          };
+        }
       });
     });
 
-    // Deshabilita el botón de editar pago si no hay selección
+    // Deshabilita los botones si no hay selección
     document.getElementById("btnEditarPago")?.setAttribute("disabled", "disabled");
+    document.getElementById("btnEliminarPago")?.setAttribute("disabled", "disabled");
   }
 
   // Función para cargar los datos del pago seleccionado en el modal de editar
@@ -165,6 +195,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     formEditar.querySelector('[name="amount"]').value = pago.amount;
     formEditar.querySelector('[name="description"]').value = pago.description || "";
     formEditar.querySelector('[name="status"]').value = pago.status;
+    formEditar.querySelector('[name="customerId"]').value = pago.customerId;
+    console.log("ggggg",clienteId);
+
+     formActualizarPago.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    try{
+      await agregarPagoDesdeModalUpdate(formActualizarPago,clienteId);
+    }catch(err){
+      alert(err.message);
+    }
+  });
+
+   
   }
 
   // Exponer la función para el botón de factura
@@ -275,6 +318,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("modalAgregarPago")?.addEventListener("show.bs.modal", () => {
     if (inputCustomerIdAgregar) inputCustomerIdAgregar.value = selectorClientes.value;
   });
+
+ 
 
   formAgregarPago.addEventListener("submit", async (e) => {
     e.preventDefault();

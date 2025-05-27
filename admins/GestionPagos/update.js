@@ -1,39 +1,37 @@
 import { API_URL } from "/constants/constants.js";
 
 // Función para obtener los datos del formulario y hacer la petición POST para agregar un pago
-export async function agregarPagoDesdeModalUpdate(formAgregarPago) {
-  const customerId = formAgregarPago.querySelector('[name="customerId"]').value;
-  console.log(customerId);
+export async function agregarPagoDesdeModalUpdate(formAgregarPago,customerId) {
+  //const customerId = formAgregarPago.querySelector('[name="customerId"]').value;
+  console.log("idcliente:",customerId);
+  const paymentId = formAgregarPago.querySelector('[name="paymentId"]').value;
+  console.log("PAYMENTID",paymentId);
   const amount = formAgregarPago.querySelector('[name="amount"]').value;
   const description = formAgregarPago.querySelector('[name="description"]').value;
   const status = formAgregarPago.querySelector('[name="status"]').value;
 
-  const data = {
-    amount: Number(amount),
-    description,
-    status
-  };
+  
 
    const newPayment = {
       amount : Number(amount),
       description,
       status,
-      customerId 
+      customerId
     };
 
-  const res = await fetch(`${API_URL}/payments`, {
+  const res = await fetch(`${API_URL}/payments/${paymentId}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify(newPayment)
+    body: JSON.stringify(newPayment),
+    credentials : "include"
   });
 
-  if (res.status === 201) {
+
+
+  if (res.status === 200) {
     console.log( await res.json());
-    alert("Cliente agregado exitosamente.");
-        const modal = bootstrap.Modal.getInstance(document.getElementById("modalAgregarPago"));
-        modal.hide(); 
-        window.location.href = "/admins/GestionPagos/index.html";
+    
+          window.location.href = "/admins/GestionPagos/index.html";
 
   }
 

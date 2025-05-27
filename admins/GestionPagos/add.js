@@ -8,11 +8,6 @@ export async function agregarPagoDesdeModal(formAgregarPago) {
   const description = formAgregarPago.querySelector('[name="description"]').value;
   const status = formAgregarPago.querySelector('[name="status"]').value;
 
-  const data = {
-    amount: Number(amount),
-    description,
-    status
-  };
 
    const newPayment = {
       amount : Number(amount),
@@ -30,7 +25,7 @@ export async function agregarPagoDesdeModal(formAgregarPago) {
 
   if (res.status === 201) {
     console.log( await res.json());
-    alert("Cliente agregado exitosamente.");
+    alert("Pago agregado exitosamente.");
         const modal = bootstrap.Modal.getInstance(document.getElementById("modalAgregarPago"));
         modal.hide(); 
         window.location.href = "/admins/GestionPagos/index.html";
