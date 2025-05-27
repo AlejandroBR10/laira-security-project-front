@@ -28,21 +28,117 @@
   opacity: 0;
 }
 
+#camarasContainer {
+  position: relative;
+}
+
+#camarasContainer img {
+  border-radius: 15px; /* Bordes redondeados */
+}
+
 .default-cameras img {
   opacity: 1;
-  filter: brightness(5%);
+  filter: brightness(80%);
   width: 640px;
   height: 360px;
   object-fit: cover;
   transition: filter 0.8s ease-in-out, opacity 0.8s ease-in-out; /* Suaviza la animación */
+  border-radius: 15px; /* Bordes redondeados */
 }
-
 
 .camara-activa {
   opacity: 1 !important;
   filter: brightness(100%) blur(0px);
   animation: encendido 1s ease-in-out forwards;
+  border-radius: 15px; /* Bordes redondeados */
 }
+
+#camarasContainer .gif-loader {
+  position: relative;
+  display: inline-block;
+}
+
+#camarasContainer .gif-loader img {
+  opacity: 0; /* Oculta la imagen hasta que se cargue */
+  transition: opacity 0.3s ease-in-out;
+}
+
+#camarasContainer .gif-loader::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 4px solid rgba(0, 0, 0, 0.2);
+  border-top: 4px solid #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 1;
+}
+
+#camarasContainer .gif-loader.loaded::before {
+  display: none; /* Oculta el spinner cuando la imagen se cargue */
+}
+
+#camarasContainer .gif-loader.loaded img {
+  opacity: 1; /* Muestra la imagen cuando se cargue */
+}
+
+/* Indicador de estado para las cámaras */
+.default-cameras .col-auto::after,
+.persona1 .col-auto::after,
+.persona2 .col-auto::after {
+  content: "";
+  position: absolute;
+  top: 10px; /* Posición dentro del div, en la esquina superior derecha */
+  right: 10px;
+  width: 20px; /* Tamaño del indicador */
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid white; /* Borde blanco para resaltar */
+  z-index: 2;
+}
+
+/* Asegúrate de que los contenedores tengan posición relativa */
+.default-cameras .col-auto,
+.persona1 .col-auto,
+.persona2 .col-auto {
+  position: relative; /* Necesario para posicionar el pseudo-elemento dentro del div */
+}
+
+
+
+/* Cambiar a verde cuando la cámara esté encendida */
+.gif-loader.loaded::after {
+  background-color: green;
+}
+
+
+
+/* Asegúrate de que los contenedores de los GIFs tengan posición relativa */
+.default-cameras .gif-loader,
+.persona1 .gif-loader,
+.persona2 .gif-loader {
+  position: relative; /* Necesario para posicionar el pseudo-elemento dentro del GIF */
+}
+
+/* Ajustar el tamaño de todas las cámaras */
+#camarasContainer .gif-loader img,
+.default-cameras .gif-loader img {
+  width: 640px;
+  height: 360px;
+  object-fit: cover;
+}
+
+/* Posicionar el botón debajo del GIF */
+#camarasContainer .toggle-camera,
+.default-cameras .toggle-camera {
+  display: block;
+  margin: 10px auto 0; /* Centrar el botón debajo del GIF */
+}
+
 
 @keyframes encendido {
   0% {
@@ -56,5 +152,14 @@
   100% {
     opacity: 1;
     filter: brightness(100%) blur(0px);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
